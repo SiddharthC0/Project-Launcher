@@ -1,0 +1,74 @@
+package org.projectlauncher;
+import com.google.gson.JsonObject;
+import org.projectlauncher.install.VersionInstaller;
+import org.projectlauncher.install.LibraryInstaller;
+import org.projectlauncher.install.ClientDownloader;
+import org.projectlauncher.install.NativeExtractor;
+import org.projectlauncher.launch.MinecraftLauncher;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.*;
+
+
+// Author Siddharth. Do not copy
+
+public class Main {
+
+    public static void main(String[] args) {
+        try {
+                // Folders
+                File baseFolder = new File("launcher-data");
+                File cacheFolder = new File(baseFolder, "cache");
+                File downloadsFolder = new File(baseFolder, "downloads");
+                File nativesFolder = new File(baseFolder, "natives");
+                File assetsFolder = new File(baseFolder, "assets");
+                baseFolder.mkdirs();
+                cacheFolder.mkdirs();
+                downloadsFolder.mkdirs();
+                nativesFolder.mkdirs();
+                assetsFolder.mkdirs();
+
+                // Version Installation
+                String versionUrl = "https://piston-meta.mojang.com/v1/packages/1803415949290958d410f9f33fddbd0f5206db99/1.21.4.json";
+                File versionJsonFile = VersionInstaller.downloadVersionJson(versionUrl, cacheFolder);
+                JsonObject versionJson = VersionInstaller.parseVersionJson(versionJsonFile);
+                LibraryInstaller.downloadLibraries(versionJson, downloadsFolder.toPath().resolve("libraries"));
+                String clientUrl = versionJson.getAsJsonObject("downloads").getAsJsonObject("client").get("url").getAsString();
+                ClientDownloader.downloadClient(clientUrl, downloadsFolder.toPath());
+
+                JsonObject assetIndexObj = versionJson.getAsJsonObject("assetIndex");
+                String assetIndexUrl = assetIndexObj.get("url").getAsString();
+                String assetIndexId = assetIndexObj.get("id").getAsString();
+                Path indexPath = assetsFolder.toPath().resolve("indexes").resolve(assetIndexId + ".json");
+                Files.createDirectories(indexPath.getParent());
+
+                try (InputStream in = new URL(assetIndexUrl).openStream()) {
+                        Files.copy(in, indexPath, StandardCopyOption.REPLACE_EXISTING);
+                }
+                VersionInstaller.downloadAssets(indexPath, assetsFolder.toPath().resolve("objects"));
+                String os = System.getProperty("os.name").toLowerCase();
+                String osKey = os.contains("win") ? "windows"
+                    : os.contains("mac") ? "macos"
+                    : "linux";
+
+                // Natives
+                NativeExtractor.extractNatives(
+                    downloadsFolder.toPath().resolve("libraries"),
+                    nativesFolder.toPath(),
+                    osKey
+            );
+
+            // Launch
+            MinecraftLauncher.launchMinecraft(
+                    downloadsFolder.toPath(),
+                    nativesFolder.toPath(),
+                    assetsFolder.toPath(),
+                    assetIndexId
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

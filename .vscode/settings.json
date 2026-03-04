@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.referencedLibraries": [
+        "D:/Project Launcher/deps/javafx-sdk-21.0.10/lib/**/*.jar"
+    ]
+}

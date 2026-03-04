@@ -1,0 +1,67 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'org.projectlauncher'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Include all libraries in launcher-data
+    implementation fileTree('launcher-data/downloads/libraries') {
+        include '**/*.jar'
+    }
+
+    // JSON parsing for manifests
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // HTTP client for downloading libraries, assets, client jar
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.24.3'
+
+    // Testing (optional)
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    implementation "org.openjfx:javafx-base:21:win"
+    implementation "org.openjfx:javafx-graphics:21:win"
+    implementation "org.openjfx:javafx-controls:21:win"
+    implementation "org.openjfx:javafx-fxml:21:win"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'org.projectlauncher.Main'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// Create native folders safely at configuration time
+def nativeDirs = [
+    "launcher-data/natives/windows/x64",
+    "launcher-data/natives/windows/x86",
+    "launcher-data/natives/windows/arm64",
+    "launcher-data/natives/driver/windows/perfmon"
+]
+
+nativeDirs.each { dir ->
+    file(dir).mkdirs()
+}
+
+// Ensure run uses correct classpath
+run {
+    classpath = sourceSets.main.runtimeClasspath
+}
