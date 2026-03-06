@@ -18,6 +18,7 @@ dependencies {
 
     // JSON parsing for manifests
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'net.sf.jopt-simple:jopt-simple:5.0.1'
 
     // HTTP client for downloading libraries, assets, client jar
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'

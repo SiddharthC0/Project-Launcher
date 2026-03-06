@@ -1,74 +1,130 @@
 package org.projectlauncher;
+
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.projectlauncher.install.VersionInstaller;
-import org.projectlauncher.install.LibraryInstaller;
-import org.projectlauncher.install.ClientDownloader;
-import org.projectlauncher.install.NativeExtractor;
+import org.projectlauncher.gui.LauncherInterfaceMain;
+import org.projectlauncher.install.*;
 import org.projectlauncher.launch.MinecraftLauncher;
+import org.projectlauncher.manifest.VersionManifestFetcher;
+import org.projectlauncher.setup.FolderSetup;
+
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.*;
 
-
-// Author Siddharth. Do not copy
-
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println(System.getProperty("user.dir")); // debug
+
+        // Create required folders
+        FolderSetup.initializeFolders();
+
+        // Launch Swing GUI
+        LauncherInterfaceMain launcherInterfaceMain = new LauncherInterfaceMain();
+        launcherInterfaceMain.launchInterface();
+    }
+
+    public static void launchVersion(String versionId) {
         try {
-                // Folders
-                File baseFolder = new File("launcher-data");
-                File cacheFolder = new File(baseFolder, "cache");
-                File downloadsFolder = new File(baseFolder, "downloads");
-                File nativesFolder = new File(baseFolder, "natives");
-                File assetsFolder = new File(baseFolder, "assets");
-                baseFolder.mkdirs();
-                cacheFolder.mkdirs();
-                downloadsFolder.mkdirs();
-                nativesFolder.mkdirs();
-                assetsFolder.mkdirs();
+            File baseFolder = new File("launcher-data");
+            File cacheFolder = new File(baseFolder, "cache");
+            File downloadsFolder = new File(baseFolder, "downloads");
+            File nativesFolder = new File(baseFolder, "natives");
+            File assetsFolder = new File(baseFolder, "assets");
 
-                // Version Installation
-                String versionUrl = "https://piston-meta.mojang.com/v1/packages/1803415949290958d410f9f33fddbd0f5206db99/1.21.4.json";
-                File versionJsonFile = VersionInstaller.downloadVersionJson(versionUrl, cacheFolder);
-                JsonObject versionJson = VersionInstaller.parseVersionJson(versionJsonFile);
-                LibraryInstaller.downloadLibraries(versionJson, downloadsFolder.toPath().resolve("libraries"));
-                String clientUrl = versionJson.getAsJsonObject("downloads").getAsJsonObject("client").get("url").getAsString();
-                ClientDownloader.downloadClient(clientUrl, downloadsFolder.toPath());
+            ensureFolders(baseFolder, cacheFolder, downloadsFolder, nativesFolder, assetsFolder);
 
-                JsonObject assetIndexObj = versionJson.getAsJsonObject("assetIndex");
-                String assetIndexUrl = assetIndexObj.get("url").getAsString();
-                String assetIndexId = assetIndexObj.get("id").getAsString();
-                Path indexPath = assetsFolder.toPath().resolve("indexes").resolve(assetIndexId + ".json");
-                Files.createDirectories(indexPath.getParent());
+            System.out.println("Launching version: " + versionId);
 
-                try (InputStream in = new URL(assetIndexUrl).openStream()) {
-                        Files.copy(in, indexPath, StandardCopyOption.REPLACE_EXISTING);
-                }
-                VersionInstaller.downloadAssets(indexPath, assetsFolder.toPath().resolve("objects"));
-                String os = System.getProperty("os.name").toLowerCase();
-                String osKey = os.contains("win") ? "windows"
-                    : os.contains("mac") ? "macos"
-                    : "linux";
+            // Load version JSON recursively for modded versions
+            JsonObject versionJson = loadVersionJson(versionId, cacheFolder);
+            System.out.println(versionJson.keySet());
 
-                // Natives
-                NativeExtractor.extractNatives(
-                    downloadsFolder.toPath().resolve("libraries"),
-                    nativesFolder.toPath(),
-                    osKey
-            );
+            // Download libraries
+            LibraryInstaller.downloadLibraries(versionJson, downloadsFolder.toPath().resolve("libraries"));
 
-            // Launch
+            // Download client.jar
+            String clientUrl = versionJson.getAsJsonObject("downloads")
+                                          .getAsJsonObject("client")
+                                          .get("url")
+                                          .getAsString();
+            ClientDownloader.downloadClient(clientUrl, downloadsFolder.toPath());
+
+            // Handle asset index
+            JsonObject assetIndexObj = versionJson.getAsJsonObject("assetIndex");
+            String assetIndexUrl = assetIndexObj.get("url").getAsString();
+            String assetIndexId = assetIndexObj.get("id").getAsString();
+
+            Path indexPath = assetsFolder.toPath().resolve("indexes").resolve(assetIndexId + ".json");
+            Files.createDirectories(indexPath.getParent());
+            try (InputStream in = new URL(assetIndexUrl).openStream()) {
+                Files.copy(in, indexPath, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            VersionInstaller.downloadAssets(indexPath, assetsFolder.toPath().resolve("objects"));
+
+            // Extract natives
+            NativeExtractor.extractNatives(downloadsFolder.toPath().resolve("libraries"), nativesFolder.toPath());
+
+            // Launch Minecraft with offline username
             MinecraftLauncher.launchMinecraft(
                     downloadsFolder.toPath(),
                     nativesFolder.toPath(),
                     assetsFolder.toPath(),
-                    assetIndexId
+                    assetIndexId,
+                    versionId,
+                    "Siddy5303"
             );
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void ensureFolders(File... folders) {
+        for (File f : folders) if (!f.exists()) f.mkdirs();
+    }
+
+    private static JsonObject loadVersionJson(String versionId, File cacheFolder) throws Exception {
+        File localVersion = new File(System.getenv("APPDATA") + "\\.minecraft\\versions\\" + versionId + "\\" + versionId + ".json");
+
+        JsonObject versionJson;
+        if (localVersion.exists()) {
+            System.out.println("Using LOCAL version JSON: " + localVersion.getAbsolutePath());
+            versionJson = VersionInstaller.parseVersionJson(localVersion);
+        } else {
+            JsonObject manifest = VersionManifestFetcher.fetchManifest();
+            JsonArray versions = manifest.getAsJsonArray("versions");
+            String versionUrl = null;
+
+            for (int i = 0; i < versions.size(); i++) {
+                JsonObject v = versions.get(i).getAsJsonObject();
+                if (v.get("id").getAsString().equals(versionId)) {
+                    versionUrl = v.get("url").getAsString();
+                    break;
+                }
+            }
+            if (versionUrl == null) throw new RuntimeException("Version not found: " + versionId);
+
+            File versionJsonFile = VersionInstaller.downloadVersionJson(versionUrl, cacheFolder);
+            versionJson = VersionInstaller.parseVersionJson(versionJsonFile);
+        }
+
+        // Handle inheritsFrom recursively
+        if (versionJson.has("inheritsFrom")) {
+            String parentId = versionJson.get("inheritsFrom").getAsString();
+            System.out.println("Version inherits from: " + parentId);
+            JsonObject parentJson = loadVersionJson(parentId, cacheFolder);
+
+            JsonObject downloads = versionJson.has("downloads") ? versionJson.getAsJsonObject("downloads") : null;
+            JsonObject parentDownloads = parentJson.getAsJsonObject("downloads");
+            if (downloads == null || !downloads.has("client")) versionJson.add("downloads", parentDownloads);
+
+            if (!versionJson.has("assetIndex")) versionJson.add("assetIndex", parentJson.getAsJsonObject("assetIndex"));
+        }
+
+        return versionJson;
     }
 }

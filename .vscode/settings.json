@@ -2,5 +2,9 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.project.referencedLibraries": [
         "D:/Project Launcher/deps/javafx-sdk-21.0.10/lib/**/*.jar"
-    ]
+    ],
+    "files.readonlyInclude": {
+        "{**/.c4z/.extsrcs/*.PROTSYM.cbl,**/.c4z/.extsrcs/*.PROTSYM.listing}": true
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }

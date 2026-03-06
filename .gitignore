@@ -1,13 +1,12 @@
-# Ignore Gradle project-specific cache directory
-.gradle
+.gradle/
+build/
 
-# Ignore Gradle build output directory
-build
+.kotlin/
 
-# Ignore Kotlin plugin data
-.kotlin
-
-# Ignore dependencies directories
 deps/
 *.msi
 *.zip
+
+app/launcher-data/*
+!app/launcher-data/configs/
+!app/launcher-data/version_jsons/

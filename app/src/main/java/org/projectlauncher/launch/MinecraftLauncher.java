@@ -1,71 +1,96 @@
 package org.projectlauncher.launch;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MinecraftLauncher {
 
+    /**
+     * Launch Minecraft with proper classpath, natives, and assets handling.
+     *
+     * @param downloadsDir The launcher downloads folder (contains client.jar and libraries)
+     * @param nativesDir   The folder where native libraries are extracted
+     * @param assetsDir    The assets folder
+     * @param assetIndexId The asset index id
+     * @param versionId    The Minecraft version (vanilla or modded)
+     * @param username     The username to use (offline or online)
+     */
     public static void launchMinecraft(Path downloadsDir,
                                        Path nativesDir,
                                        Path assetsDir,
-                                       String assetIndexId) throws IOException {
+                                       String assetIndexId,
+                                       String versionId,
+                                       String username) {
 
-        List<String> command = new ArrayList<>();
+        try {
+            List<String> command = new ArrayList<>();
 
-        // Java executable
-        command.add(System.getProperty("java.home") + "/bin/java");
+            // Java executable
+            String javaExe = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+            command.add(javaExe);
 
-        // JVM options
-        command.add("-Xmx2G");
-        command.add("-Djava.library.path=" + nativesDir.toAbsolutePath());
+            // JVM options
+            command.add("-Xmx2G");
+            command.add("-Djava.library.path=" + nativesDir.toAbsolutePath());
 
-        // Build full classpath (all library jars + client.jar)
-        List<Path> libraryJars = Files.walk(downloadsDir.resolve("libraries"))
-                .filter(Files::isRegularFile)
-                .filter(p -> p.toString().endsWith(".jar"))
-                .collect(Collectors.toList());
+            // Build classpath from all libraries + client.jar
+            List<Path> libraryJars = Files.walk(downloadsDir.resolve("libraries"))
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toString().endsWith(".jar"))
+                    .collect(Collectors.toList());
 
-        libraryJars.add(downloadsDir.resolve("client.jar")); // include client.jar
+            libraryJars.add(downloadsDir.resolve("client.jar")); // client.jar
 
-        String classpath = libraryJars.stream()
-                .map(Path::toString)
-                .reduce((a, b) -> a + ";" + b) // Windows separator
-                .orElse("");
+            String classpath = libraryJars.stream()
+                    .map(Path::toString)
+                    .collect(Collectors.joining(System.getProperty("path.separator")));
 
-        command.add("-cp");
-        command.add(classpath);
+            command.add("-cp");
+            command.add(classpath);
 
-        // Minecraft main class
-        command.add("net.minecraft.client.main.Main");
+            // Minecraft main class
+            command.add("net.minecraft.client.main.Main");
 
-        // Minecraft arguments
-        command.add("--username");
-        command.add("Siddy5303");
+            // Minecraft arguments
+            command.add("--username");
+            command.add(username);
 
-        command.add("--version");
-        command.add("1.21.4");
+            command.add("--version");
+            command.add(versionId);
 
-        command.add("--gameDir");
-        command.add(downloadsDir.toAbsolutePath().toString());
+            Path gameDir = downloadsDir.getParent(); // launcher-data as gameDir
+            command.add("--gameDir");
+            command.add(gameDir.toAbsolutePath().toString());
 
-        // ✅ FIXED: correct assets directory
-        command.add("--assetsDir");
-        command.add(assetsDir.toAbsolutePath().toString());
+            command.add("--assetsDir");
+            command.add(assetsDir.toAbsolutePath().toString());
 
-        // ✅ FIXED: correct asset index id
-        command.add("--assetIndex");
-        command.add(assetIndexId);
+            command.add("--assetIndex");
+            command.add(assetIndexId);
 
-        command.add("--accessToken");
-        command.add("offline-token");
+            command.add("--accessToken");
+            command.add("offline-token"); // offline mode
 
-        // Start process
-        ProcessBuilder pb = new ProcessBuilder(command);
-        pb.inheritIO();
-        pb.start();
+            // Optional window size
+            command.add("--width");
+            command.add("854");
+            command.add("--height");
+            command.add("480");
+
+            // Start process
+            ProcessBuilder pb = new ProcessBuilder(command);
+            pb.inheritIO();
+            pb.start();
+
+            System.out.println("Minecraft launched with version: " + versionId);
+
+        } catch (IOException e) {
+            System.err.println("Failed to launch Minecraft!");
+            e.printStackTrace();
+        }
     }
 }
