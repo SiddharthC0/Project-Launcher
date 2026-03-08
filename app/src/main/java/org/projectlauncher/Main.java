@@ -1,5 +1,16 @@
 package org.projectlauncher;
-
+/*
+ * Project Launcher
+ * Copyright (c) 2026 Siddharth Chauhan
+ * All Rights Reserved.
+ *
+ * This source code is the proprietary property of Siddharth Chauhan.
+ * Unauthorized copying, modification, distribution, or use of this
+ * file, via any medium, is strictly prohibited without explicit
+ * written permission from the author.
+ *
+ * This file is part of the Project Launcher software.
+ */
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.projectlauncher.gui.LauncherInterfaceMain;
