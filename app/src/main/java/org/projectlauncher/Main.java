@@ -7,6 +7,7 @@ import org.projectlauncher.install.*;
 import org.projectlauncher.launch.MinecraftLauncher;
 import org.projectlauncher.manifest.VersionManifestFetcher;
 import org.projectlauncher.setup.FolderSetup;
+import org.projectlauncher.instances.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -26,7 +27,7 @@ public class Main {
         launcherInterfaceMain.launchInterface();
     }
 
-    public static void launchVersion(String versionId) {
+    public static void launchVersion(String versionId, Instance instance) {
         try {
             File baseFolder = new File("launcher-data");
             File cacheFolder = new File(baseFolder, "cache");
@@ -68,6 +69,16 @@ public class Main {
             // Extract natives
             NativeExtractor.extractNatives(downloadsFolder.toPath().resolve("libraries"), nativesFolder.toPath());
 
+            String maxRam = "-Xmx2G"; // fallback default
+
+            if (instance != null && instance.jvmArgs != null) {
+                for (String arg : instance.jvmArgs) {
+                    if (arg.startsWith("-Xmx")) {
+                        maxRam = arg;
+                        break;
+                    }
+                }
+            }
             // Launch Minecraft with offline username
             MinecraftLauncher.launchMinecraft(
                     downloadsFolder.toPath(),
@@ -75,7 +86,8 @@ public class Main {
                     assetsFolder.toPath(),
                     assetIndexId,
                     versionId,
-                    "Siddy5303"
+                    "Siddy5303",
+                    maxRam
             );
 
         } catch (Exception e) {
@@ -126,5 +138,8 @@ public class Main {
         }
 
         return versionJson;
+    }
+    public static void launchInstance(Instance instance) {
+        launchVersion(instance.version, instance);
     }
 }

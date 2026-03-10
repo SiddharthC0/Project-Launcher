@@ -7,12 +7,14 @@ import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 
-import org.projectlauncher.utils.VersionDetector;
+import org.projectlauncher.gui.mod.LauncherModMenu;
+import org.projectlauncher.instances.*;
 
 public class LauncherInterfaceMain {
 
     public void launchInterface() {
-
+        final String[] currentTab = { "Home" };
+        LauncherData data = new LauncherData();
 
         // --- FRAME ---
         JFrame frame = new JFrame("Project Launcher : Beta Dev Test");
@@ -27,9 +29,11 @@ public class LauncherInterfaceMain {
         frame.setLayout(null);
 
         // --- DRAG WINDOW ---
-        final Point[] mouse = {null};
+        final Point[] mouse = { null };
         frame.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) { mouse[0] = e.getPoint(); }
+            public void mousePressed(MouseEvent e) {
+                mouse[0] = e.getPoint();
+            }
         });
         frame.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
@@ -73,18 +77,6 @@ public class LauncherInterfaceMain {
         accountPanel.setBounds(5, 460, 220, 90);
         accountPanel.setBorder(null);
 
-        JLabel user = new JLabel("Siddy5303");
-        user.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-        user.setForeground(Color.WHITE);
-        user.setBounds(15, 10, 180, 25);
-        accountPanel.add(user);
-
-        JLabel status = new JLabel("OFFLINE");
-        status.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        status.setForeground(Color.WHITE);
-        status.setBounds(15, 40, 180, 20);
-        accountPanel.add(status);
-
         sidebar.add(accountPanel);
 
         // --- MAIN CONTENT AREA ---
@@ -104,7 +96,14 @@ public class LauncherInterfaceMain {
         homeLabel.setBounds(20, 20, 400, 30);
         homePanel.add(homeLabel);
 
-        ImagePanel imagePanel = new ImagePanel("img.png");
+        String[] images = {
+                "img1.png",
+                "img2.png",
+                "img3.jpg",
+                "img4.jpg"
+        };
+
+        ImagePanel imagePanel = new ImagePanel(images);
         imagePanel.setBounds(20, 100, 700, 300);
         imagePanel.setBackground(Color.decode("#171717"));
         imagePanel.setBorder(null);
@@ -122,7 +121,7 @@ public class LauncherInterfaceMain {
         play.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         homePanel.add(play);
 
-        String[] instances = {"Default", "Dev", "Beta"};
+        String[] instances = { "Default", "Dev", "Beta" };
         RoundedComboBox<String> instanceDropdown = new RoundedComboBox<>(instances, 25);
         instanceDropdown.setBounds(220, 480, 300, 30);
         instanceDropdown.setBackground(Color.decode("#171717"));
@@ -134,7 +133,7 @@ public class LauncherInterfaceMain {
         contentPanel.add(homePanel);
 
         // OTHER TAB PANELS
-        String[] otherTabs = {"Instances", "Account", "Settings"};
+        String[] otherTabs = { "Instances", "Account", "Settings", "Mods" };
         for (String tabName : otherTabs) {
             RoundedPanel panel = new RoundedPanel(null, 30, Color.decode("#111111"));
             panel.setBounds(0, 0, 820, 540);
@@ -148,9 +147,11 @@ public class LauncherInterfaceMain {
             tabPanels.put(tabName, panel);
         }
 
+        LauncherInstancesMain instMenu = new LauncherInstancesMain();
+
         // --- SIDEBAR BUTTONS ---
         int y = 40;
-        String[] tabs = {"Home", "Instances", "Account", "Settings"};
+        String[] tabs = { "Home", "Instances", "Account", "Settings", "Beta", "Mods" };
         for (String tab : tabs) {
             JButton btn = new JButton(tab);
             btn.setBounds(5, y, 220, 40);
@@ -165,39 +166,72 @@ public class LauncherInterfaceMain {
             btn.setHorizontalAlignment(SwingConstants.LEFT);
             btn.setMargin(new Insets(0, 15, 0, 0));
             btn.addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent e) { btn.setBackground(Color.decode("#151515")); }
-                public void mouseExited(MouseEvent e) { btn.setBackground(Color.decode("#171717")); }
+                public void mouseEntered(MouseEvent e) {
+                    btn.setBackground(Color.decode("#151515"));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    btn.setBackground(Color.decode("#171717"));
+                }
             });
+            LauncherModMenu mods = new LauncherModMenu();
 
             btn.addActionListener(e -> {
-                for (RoundedPanel p : tabPanels.values()) p.setVisible(false);
+                for (RoundedPanel p : tabPanels.values())
+                    p.setVisible(false);
                 tabPanels.get(tab).setVisible(true);
+
+                currentTab[0] = tab; // store active tab
+                if (tabPanels.get("Instances").isVisible()) {
+                    instMenu.launchInstancesMenu(frame);
+                } else if (tabPanels.get("Mods").isVisible()) {
+                    mods.launchModMenu(frame);
+                }
             });
 
             sidebar.add(btn);
             y += 60;
         }
+        JLabel user = new JLabel(data.getUsername());
+        user.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+        user.setForeground(Color.WHITE);
+        user.setBounds(15, 10, 180, 25);
+        accountPanel.add(user);
 
-        LauncherData data = new LauncherData();
+        JLabel status = new JLabel(data.getStatus());
+        status.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        status.setForeground(Color.WHITE);
+        status.setBounds(15, 40, 180, 20);
+        accountPanel.add(status);
+
         user.setText(data.getUsername());
         status.setText(data.getStatus());
 
+        data.setUsername(user.getText());
+        data.setStatus(status.getText());
+
         instanceDropdown.removeAllItems();
 
-        for (String version : VersionDetector.getInstalledVersions()) {
-            instanceDropdown.addItem(version);
+        for (Instance inst : InstanceManager.detectInstances()) {
+            instanceDropdown.addItem(inst.name);
         }
 
         play.addActionListener(e -> {
-            String selectedVersion = (String) instanceDropdown.getSelectedItem();
+            String selectedName = (String) instanceDropdown.getSelectedItem();
             new Thread(() -> {
                 try {
-                    org.projectlauncher.Main.launchVersion(selectedVersion);
+                    for (Instance inst : InstanceManager.detectInstances()) {
+                        if (inst.name.equals(selectedName)) {
+                            org.projectlauncher.Main.launchInstance(inst);
+                            return;
+                        }
+
+                    }
+                    System.out.println("Instance not found: " + selectedName);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }).start();
-
         });
 
         // SETTINGS PANEL
@@ -227,8 +261,6 @@ public class LauncherInterfaceMain {
         frame.setVisible(true);
     }
 
-    
-
     // --- HELPER METHODS ---
     private JButton createWindowButton(Color color, String text) {
         JButton btn = new JButton();
@@ -245,12 +277,22 @@ public class LauncherInterfaceMain {
 
     static class RoundedBorder implements Border {
         private int radius;
-        RoundedBorder(int radius) { this.radius = radius; }
-        public Insets getBorderInsets(Component c) { return new Insets(radius+1, radius+1, radius+2, radius); }
-        public boolean isBorderOpaque() { return false; }
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
+        public Insets getBorderInsets(Component c) {
+            return new Insets(radius + 1, radius + 1, radius + 2, radius);
+        }
+
+        public boolean isBorderOpaque() {
+            return false;
+        }
+
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.setColor(new Color(250, 250, 250));
-            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+            g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
     }
 }

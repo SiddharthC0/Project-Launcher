@@ -10,3 +10,5 @@ deps/
 app/launcher-data/*
 !app/launcher-data/configs/
 !app/launcher-data/version_jsons/
+
+launcher-data/*

@@ -1,5 +1,5 @@
-[17:47:29] [Datafixer Bootstrap/INFO]: 287 Datafixer optimizations took 1725 milliseconds
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3.jar
+[22:10:59] [Datafixer Bootstrap/INFO]: 287 Datafixer optimizations took 2017 milliseconds
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -12,7 +12,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -25,7 +25,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -38,7 +38,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -51,7 +51,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -64,7 +64,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -77,7 +77,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -90,7 +90,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -103,7 +103,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -116,7 +116,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -129,7 +129,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -142,7 +142,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -155,7 +155,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -168,7 +168,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -181,7 +181,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -194,7 +194,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -207,7 +207,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -220,7 +220,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-freetype\3.3.3\lwjgl-freetype-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -233,7 +233,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-glfw\3.3.3\lwjgl-glfw-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -246,7 +246,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-jemalloc\3.3.3\lwjgl-jemalloc-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -259,7 +259,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-openal\3.3.3\lwjgl-openal-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -272,7 +272,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-opengl\3.3.3\lwjgl-opengl-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -285,7 +285,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-stb\3.3.3\lwjgl-stb-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -298,7 +298,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl-tinyfd\3.3.3\lwjgl-tinyfd-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -311,7 +311,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows-arm64.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows-arm64.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\org\lwjgl\lwjgl\3.3.3\lwjgl-3.3.3-natives-windows-arm64.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -324,7 +324,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\at\yawk\lz4\lz4-java\1.8.1\lz4-java-1.8.1.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\at\yawk\lz4\lz4-java\1.8.1\lz4-java-1.8.1.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\at\yawk\lz4\lz4-java\1.8.1\lz4-java-1.8.1.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -337,7 +337,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\azure\azure-json\1.4.0\azure-json-1.4.0.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\azure\azure-json\1.4.0\azure-json-1.4.0.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\azure\azure-json\1.4.0\azure-json-1.4.0.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -350,7 +350,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\github\oshi\oshi-core\6.9.0\oshi-core-6.9.0.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\github\oshi\oshi-core\6.9.0\oshi-core-6.9.0.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\github\oshi\oshi-core\6.9.0\oshi-core-6.9.0.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -363,7 +363,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\code\gson\gson\2.13.2\gson-2.13.2.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\code\gson\gson\2.13.2\gson-2.13.2.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\code\gson\gson\2.13.2\gson-2.13.2.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -376,7 +376,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\failureaccess\1.0.3\failureaccess-1.0.3.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -389,7 +389,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\google\guava\guava\33.5.0-jre\guava-33.5.0-jre.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -402,7 +402,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\ibm\icu\icu4j\77.1\icu4j-77.1.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\ibm\icu\icu4j\77.1\icu4j-77.1.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\ibm\icu\icu4j\77.1\icu4j-77.1.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -415,7 +415,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\microsoft\azure\msal4j\1.23.1\msal4j-1.23.1.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\microsoft\azure\msal4j\1.23.1\msal4j-1.23.1.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\microsoft\azure\msal4j\1.23.1\msal4j-1.23.1.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -428,7 +428,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\authlib\7.0.61\authlib-7.0.61.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\authlib\7.0.61\authlib-7.0.61.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\authlib\7.0.61\authlib-7.0.61.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -441,7 +441,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\blocklist\1.0.10\blocklist-1.0.10.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\blocklist\1.0.10\blocklist-1.0.10.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\blocklist\1.0.10\blocklist-1.0.10.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -454,7 +454,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\brigadier\1.3.10\brigadier-1.3.10.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\brigadier\1.3.10\brigadier-1.3.10.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\brigadier\1.3.10\brigadier-1.3.10.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -467,7 +467,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\datafixerupper\9.0.19\datafixerupper-9.0.19.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\datafixerupper\9.0.19\datafixerupper-9.0.19.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\datafixerupper\9.0.19\datafixerupper-9.0.19.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -480,7 +480,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37-natives-windows.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37-natives-windows.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\jtracy\1.0.37\jtracy-1.0.37-natives-windows.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -493,7 +493,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\logging\1.6.11\logging-1.6.11.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\logging\1.6.11\logging-1.6.11.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\logging\1.6.11\logging-1.6.11.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -506,7 +506,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\patchy\2.2.10\patchy-2.2.10.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\patchy\2.2.10\patchy-2.2.10.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\patchy\2.2.10\patchy-2.2.10.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -519,7 +519,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\text2speech\1.18.11\text2speech-1.18.11.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\text2speech\1.18.11\text2speech-1.18.11.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\com\mojang\text2speech\1.18.11\text2speech-1.18.11.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -532,7 +532,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\commons-codec\commons-codec\1.19.0\commons-codec-1.19.0.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\commons-codec\commons-codec\1.19.0\commons-codec-1.19.0.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\commons-codec\commons-codec\1.19.0\commons-codec-1.19.0.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -545,7 +545,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\commons-io\commons-io\2.20.0\commons-io-2.20.0.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\commons-io\commons-io\2.20.0\commons-io-2.20.0.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\commons-io\commons-io\2.20.0\commons-io-2.20.0.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -558,7 +558,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-buffer\4.2.7.Final\netty-buffer-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-buffer\4.2.7.Final\netty-buffer-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-buffer\4.2.7.Final\netty-buffer-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -571,7 +571,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-base\4.2.7.Final\netty-codec-base-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-base\4.2.7.Final\netty-codec-base-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-base\4.2.7.Final\netty-codec-base-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -584,7 +584,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-compression\4.2.7.Final\netty-codec-compression-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-compression\4.2.7.Final\netty-codec-compression-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-compression\4.2.7.Final\netty-codec-compression-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -597,7 +597,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-http\4.2.7.Final\netty-codec-http-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-http\4.2.7.Final\netty-codec-http-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-codec-http\4.2.7.Final\netty-codec-http-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -610,7 +610,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-common\4.2.7.Final\netty-common-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-common\4.2.7.Final\netty-common-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-common\4.2.7.Final\netty-common-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -623,7 +623,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-handler\4.2.7.Final\netty-handler-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-handler\4.2.7.Final\netty-handler-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-handler\4.2.7.Final\netty-handler-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -636,7 +636,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-resolver\4.2.7.Final\netty-resolver-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-resolver\4.2.7.Final\netty-resolver-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-resolver\4.2.7.Final\netty-resolver-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -649,7 +649,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-epoll\4.2.7.Final\netty-transport-classes-epoll-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-epoll\4.2.7.Final\netty-transport-classes-epoll-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-epoll\4.2.7.Final\netty-transport-classes-epoll-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -662,7 +662,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-kqueue\4.2.7.Final\netty-transport-classes-kqueue-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-kqueue\4.2.7.Final\netty-transport-classes-kqueue-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-classes-kqueue\4.2.7.Final\netty-transport-classes-kqueue-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -675,7 +675,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-native-unix-common\4.2.7.Final\netty-transport-native-unix-common-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-native-unix-common\4.2.7.Final\netty-transport-native-unix-common-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport-native-unix-common\4.2.7.Final\netty-transport-native-unix-common-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -688,7 +688,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport\4.2.7.Final\netty-transport-4.2.7.Final.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport\4.2.7.Final\netty-transport-4.2.7.Final.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\io\netty\netty-transport\4.2.7.Final\netty-transport-4.2.7.Final.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -701,7 +701,7 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\it\unimi\dsi\fastutil\8.5.18\fastutil-8.5.18.jar
+[22:11:21] [Render thread/WARN]: Failed to delete cache file D:\Project Launcher\app\launcher-data\downloads\libraries\it\unimi\dsi\fastutil\8.5.18\fastutil-8.5.18.jar
 java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloads\libraries\it\unimi\dsi\fastutil\8.5.18\fastutil-8.5.18.jar: The process cannot access the file because it is being used by another process
 	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
 	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
@@ -714,10 +714,10 @@ java.nio.file.FileSystemException: D:\Project Launcher\app\launcher-data\downloa
 	at iom.<init>(SourceFile:98)
 	at gfj.<init>(SourceFile:443)
 	at net.minecraft.client.main.Main.main(SourceFile:234)
-[17:47:42] [Render thread/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
-[17:47:42] [Render thread/INFO]: Setting user: Siddy5303
-[17:47:44] [Render thread/INFO]: Backend library: LWJGL version 3.3.3+5
-[17:47:44] [Download-2/ERROR]: Failed to fetch user properties
+[22:11:21] [Render thread/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[22:11:22] [Render thread/INFO]: Setting user: Siddy5303
+[22:11:23] [Render thread/INFO]: Backend library: LWJGL version 3.3.3+5
+[22:11:23] [Download-2/ERROR]: Failed to fetch user properties
 com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
 	at com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:59)
 	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:150)
@@ -731,9 +731,10 @@ Caused by: com.mojang.authlib.exceptions.MinecraftClientHttpException: Status: 4
 	at com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:56)
 	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:121)
 	... 5 more
-[17:47:47] [Render thread/INFO]: Using optional rendering extensions: GL_ARB_buffer_storage, GL_KHR_debug, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
-[17:47:49] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token
-[17:47:49] [Download-2/ERROR]: Failed to fetch Realms feature flags
+[22:11:26] [Render thread/INFO]: Using optional rendering extensions: GL_ARB_buffer_storage, GL_KHR_debug, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
+[22:11:28] [Render thread/INFO]: Reloading ResourceManager: vanilla
+[22:11:28] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token
+[22:11:28] [Download-2/ERROR]: Failed to fetch Realms feature flags
 gce: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token'
 	at fzz.a(SourceFile:526)
 	at fzz.o(SourceFile:186)
@@ -741,29 +742,28 @@ gce: Realms authentication error with message 'java.lang.RuntimeException: Faile
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-[17:47:49] [Render thread/INFO]: Reloading ResourceManager: vanilla
-[17:47:51] [Worker-Main-4/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
-[17:47:51] [Worker-Main-6/INFO]: Found unifont_pua-17.0.01.hex, loading
-[17:47:52] [Worker-Main-4/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
-[17:47:56] [Render thread/INFO]: OpenAL initialized on device OpenAL Soft on Headphones (HP H150)
-[17:47:56] [Render thread/INFO]: Sound engine started
-[17:47:56] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[17:47:56] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
-[17:47:56] [Render thread/INFO]: Created: 2048x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
-[17:47:57] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[17:47:57] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
-[17:47:57] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
-[17:47:58] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
-[17:47:58] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
-[17:47:58] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
-[17:47:58] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/beds.png-atlas
-[17:47:58] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
-[17:47:59] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
-[17:47:59] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[17:47:59] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/signs.png-atlas
-[17:47:59] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
-[17:48:05] [IO-Worker-1/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token
-[17:48:05] [IO-Worker-1/ERROR]: Couldn't connect to realms
+[22:11:30] [Worker-Main-1/INFO]: Found unifont_pua-17.0.01.hex, loading
+[22:11:30] [Worker-Main-4/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
+[22:11:31] [Worker-Main-4/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
+[22:11:37] [Render thread/INFO]: OpenAL initialized on device OpenAL Soft on Speaker (Realtek(R) Audio)
+[22:11:37] [Render thread/INFO]: Sound engine started
+[22:11:37] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[22:11:37] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[22:11:37] [Render thread/INFO]: Created: 2048x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
+[22:11:37] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[22:11:37] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[22:11:37] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/beds.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/signs.png-atlas
+[22:11:39] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[22:11:41] [IO-Worker-1/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token
+[22:11:41] [IO-Worker-1/ERROR]: Couldn't connect to realms
 gce: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: offline-token'
 	at fzz.a(SourceFile:526)
 	at fzz.i(SourceFile:307)
@@ -772,4 +772,4 @@ gce: Realms authentication error with message 'java.lang.RuntimeException: Faile
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-[17:48:08] [Render thread/INFO]: Stopping!
+[22:11:54] [Render thread/INFO]: Stopping!

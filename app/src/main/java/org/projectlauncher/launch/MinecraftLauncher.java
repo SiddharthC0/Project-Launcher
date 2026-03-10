@@ -24,7 +24,8 @@ public class MinecraftLauncher {
                                        Path assetsDir,
                                        String assetIndexId,
                                        String versionId,
-                                       String username) {
+                                       String username,
+                                       String xmxJVM) {
 
         try {
             List<String> command = new ArrayList<>();
@@ -34,7 +35,7 @@ public class MinecraftLauncher {
             command.add(javaExe);
 
             // JVM options
-            command.add("-Xmx2G");
+            command.add(xmxJVM);
             command.add("-Djava.library.path=" + nativesDir.toAbsolutePath());
 
             // Build classpath from all libraries + client.jar

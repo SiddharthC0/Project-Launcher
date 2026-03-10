@@ -5,24 +5,56 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class ImagePanel extends JPanel {
-    private Image image;
-    private double zoom = 2.0; // 1.0 = fit mode
-    private int cornerRadius = 30; // radius of rounded corners
 
-    public ImagePanel(String imagePath) {
-        this.image = new ImageIcon(imagePath).getImage();
-        setLayout(null); // keep absolute positioning
-        setOpaque(false); // important for smooth rounded edges
+    private Image[] images;
+    private int currentIndex = 0;
+    private int nextIndex = 1;
+
+    private float alpha = 0f; // transition progress
+    private Timer timer;
+
+    private double zoom = 2.0;
+    private int cornerRadius = 30;
+
+    public ImagePanel(String[] imagePaths) {
+
+        images = new Image[imagePaths.length];
+
+        for (int i = 0; i < imagePaths.length; i++) {
+            images[i] = new ImageIcon(imagePaths[i]).getImage();
+        }
+
+        setOpaque(false);
+
+        startSlideshow();
     }
 
-    /** Set zoom factor (1.0 = fit, 2.0 = 200%, 0.5 = 50%) */
+    private void startSlideshow() {
+
+        timer = new Timer(66, e -> { // ~60 FPS
+
+            alpha += 0.02f;
+
+            if (alpha >= 1f) {
+                alpha = 0f;
+
+                currentIndex = nextIndex;
+                nextIndex = (nextIndex + 1) % images.length;
+            }
+
+            repaint();
+
+        });
+
+        timer.start();
+    }
+
     public void setZoom(double zoom) {
         if (zoom <= 0) return;
         this.zoom = zoom;
         repaint();
     }
 
-    /** Set corner radius of the panel */
     public void setCornerRadius(int radius) {
         this.cornerRadius = radius;
         repaint();
@@ -30,36 +62,46 @@ public class ImagePanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
 
-        if (image != null) {
-            Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        if (images.length == 0) return;
 
-            int panelWidth = getWidth();
-            int panelHeight = getHeight();
+        Graphics2D g2 = (Graphics2D) g.create();
 
-            // Clip to rounded rectangle
-            RoundRectangle2D rounded = new RoundRectangle2D.Float(0, 0, panelWidth, panelHeight, cornerRadius, cornerRadius);
-            g2.setClip(rounded);
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            int imgWidth = image.getWidth(null);
-            int imgHeight = image.getHeight(null);
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
 
-            // Compute scale while keeping aspect ratio, then apply zoom
-            double scale = Math.min((double) panelWidth / imgWidth, (double) panelHeight / imgHeight) * zoom;
+        RoundRectangle2D rounded = new RoundRectangle2D.Float(0, 0, panelWidth, panelHeight, cornerRadius, cornerRadius);
+        g2.setClip(rounded);
 
-            int drawWidth = (int) (imgWidth * scale);
-            int drawHeight = (int) (imgHeight * scale);
+        drawImage(g2, images[currentIndex], 1f - alpha);
+        drawImage(g2, images[nextIndex], alpha);
 
-            // Center the image
-            int x = (panelWidth - drawWidth) / 2;
-            int y = (panelHeight - drawHeight) / 2;
+        g2.dispose();
+    }
 
-            g2.drawImage(image, x, y, drawWidth, drawHeight, this);
-            g2.dispose();
-        }
+    private void drawImage(Graphics2D g2, Image image, float alpha) {
+
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
+        int imgWidth = image.getWidth(null);
+        int imgHeight = image.getHeight(null);
+
+        double scale = Math.min((double) panelWidth / imgWidth, (double) panelHeight / imgHeight) * zoom;
+
+        int drawWidth = (int) (imgWidth * scale);
+        int drawHeight = (int) (imgHeight * scale);
+
+        int x = (panelWidth - drawWidth) / 2;
+        int y = (panelHeight - drawHeight) / 2;
+
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        g2.drawImage(image, x, y, drawWidth, drawHeight, this);
     }
 }
