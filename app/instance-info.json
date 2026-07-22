@@ -89,6 +89,176 @@
         "-Xmx2G",
         "-Xms1G"
       ]
+    },
+    {
+      "name": "1.21.4-OptiFine_HD_U_J3",
+      "version": "1.21.4-OptiFine_HD_U_J3",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth Chauhan\\AppData\\Roaming\\.minecraft\\versions\\1.21.4-OptiFine_HD_U_J3",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "BTM",
+      "version": "BTM",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth Chauhan\\AppData\\Roaming\\.minecraft\\versions\\BTM",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.0",
+      "version": "1.0",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.0",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.16.5",
+      "version": "1.16.5",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.16.5",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.16.5-OptiFine_HD_U_G8",
+      "version": "1.16.5-OptiFine_HD_U_G8",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.16.5-OptiFine_HD_U_G8",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.20.1-forge-47.1.106",
+      "version": "1.20.1-forge-47.1.106",
+      "type": "Forge",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.20.1-forge-47.1.106",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.20.1-forge-47.4.20",
+      "version": "1.20.1-forge-47.4.20",
+      "type": "Forge",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.20.1-forge-47.4.20",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.20.2",
+      "version": "1.20.2",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.20.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.20.2-OptiFine_HD_U_I7_pre1",
+      "version": "1.20.2-OptiFine_HD_U_I7_pre1",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.20.2-OptiFine_HD_U_I7_pre1",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "26.1.2",
+      "version": "26.1.2",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\26.1.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "26.1.2-OptiFine_HD_U_K1_pre1",
+      "version": "26.1.2-OptiFine_HD_U_K1_pre1",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\26.1.2-OptiFine_HD_U_K1_pre1",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "26.2",
+      "version": "26.2",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\26.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "26.2-pre-5",
+      "version": "26.2-pre-5",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\26.2-pre-5",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "26.2-snapshot-5",
+      "version": "26.2-snapshot-5",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\26.2-snapshot-5",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "fabric-loader-0.19.2-1.21.11",
+      "version": "fabric-loader-0.19.2-1.21.11",
+      "type": "Fabric",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\fabric-loader-0.19.2-1.21.11",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "fabric-loader-0.19.2-26.1.2",
+      "version": "fabric-loader-0.19.2-26.1.2",
+      "type": "Fabric",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\fabric-loader-0.19.2-26.1.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "fabric-loader-0.19.3-26.2",
+      "version": "fabric-loader-0.19.3-26.2",
+      "type": "Fabric",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\fabric-loader-0.19.3-26.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
     }
   ]
 }

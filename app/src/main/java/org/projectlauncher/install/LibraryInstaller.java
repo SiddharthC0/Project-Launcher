@@ -5,101 +5,361 @@ import com.google.gson.JsonObject;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 
-public class LibraryInstaller {
+public final class LibraryInstaller {
 
-    /**
-     * Downloads all libraries required by a Minecraft version JSON.
-     * Ensures libraries exist in the classpath (including joptsimple).
-     */
-    public static void downloadLibraries(JsonObject versionJson, Path librariesDir) {
-        librariesDir.toFile().mkdirs();
+    private LibraryInstaller() {
+    }
 
-        JsonArray libraries = versionJson.getAsJsonArray("libraries");
-        String os = System.getProperty("os.name").toLowerCase();
+
+    public static void downloadLibraries(
+            JsonObject versionJson,
+            Path librariesDir
+    ) {
+
+        System.out.println("Library Installer Started");
+
+        try {
+            Files.createDirectories(librariesDir);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        if (!versionJson.has("libraries")) {
+            System.out.println("No libraries found.");
+            return;
+        }
+
+
+        JsonArray libraries =
+                versionJson.getAsJsonArray("libraries");
+
+
+        String os = detectOS();
+
+        System.out.println("Detected OS: " + os);
+        System.out.println("Libraries found: " + libraries.size());
+
 
         for (int i = 0; i < libraries.size(); i++) {
-            JsonObject lib = libraries.get(i).getAsJsonObject();
 
-            // --- Check rules (OS-specific) ---
-            if (lib.has("rules")) {
-                JsonArray rules = lib.getAsJsonArray("rules");
-                boolean allowed = false;
-                for (int r = 0; r < rules.size(); r++) {
-                    JsonObject rule = rules.get(r).getAsJsonObject();
-                    String action = rule.get("action").getAsString();
-                    boolean osMatch = true;
-                    if (rule.has("os")) {
-                        JsonObject osRule = rule.getAsJsonObject("os");
-                        if (osRule.has("name")) {
-                            String osName = osRule.get("name").getAsString().toLowerCase();
-                            osMatch = os.contains(osName);
-                        }
-                    }
-                    if (osMatch && action.equals("allow")) allowed = true;
-                    if (osMatch && action.equals("disallow")) allowed = false;
+            JsonObject library =
+                    libraries.get(i).getAsJsonObject();
+
+
+            if (!allowed(library, os)) {
+
+                if (library.has("name")) {
+                    System.out.println(
+                            "Skipping blocked library: "
+                                    + library.get("name").getAsString()
+                    );
                 }
-                if (!allowed) continue; // skip library not allowed on this OS
+
+                continue;
             }
 
-            // --- Get artifact URL/path ---
-            JsonObject downloads = lib.has("downloads") ? lib.getAsJsonObject("downloads") : null;
-            JsonObject artifact = (downloads != null && downloads.has("artifact")) ? downloads.getAsJsonObject("artifact") : null;
 
-            String url;
-            String path;
+            if (library.has("downloads")) {
 
-            if (artifact == null || !artifact.has("url") || !artifact.has("path")) {
-                // Compute Maven-style URL/path for missing artifact info
-                String name = lib.get("name").getAsString(); // e.g., "org.lwjgl:lwjgl:3.3.3:natives-windows"
-                String[] parts = name.split(":");
-                if (parts.length < 3) continue;
+                JsonObject downloads =
+                        library.getAsJsonObject("downloads");
 
-                String groupId = parts[0];
-                String artifactId = parts[1];
-                String version = parts[2];
-                String classifier = parts.length == 4 ? parts[3] : null;
 
-                path = groupId.replace('.', '/') + "/" + artifactId + "/" + version + "/" +
-                       artifactId + "-" + version + (classifier != null ? "-" + classifier : "") + ".jar";
+                if (downloads.has("artifact")) {
 
-                url = "https://libraries.minecraft.net/" + path;
-                System.out.println("Computed missing URL/path for library: " + name);
-            } else {
-                url = artifact.get("url").getAsString();
-                path = artifact.get("path").getAsString();
-            }
-
-            Path dest = librariesDir.resolve(path);
-            try {
-                if (!Files.exists(dest.getParent())) Files.createDirectories(dest.getParent());
-                if (!Files.exists(dest)) {
-                    try (InputStream in = new URL(url).openStream()) {
-                        Files.copy(in, dest);
-                        System.out.println("Downloaded library: " + path);
-                    }
-                } else {
-                    System.out.println("Library already exists: " + path);
+                    install(
+                            downloads.getAsJsonObject("artifact"),
+                            librariesDir
+                    );
                 }
-            } catch (Exception e) {
-                System.err.println("Failed to download library: " + path + " - " + e.getMessage());
+
+
+                if (downloads.has("classifiers")) {
+
+                    JsonObject classifiers =
+                            downloads.getAsJsonObject("classifiers");
+
+
+                    String nativeKey =
+                            "natives-" + os;
+
+
+                    if (classifiers.has(nativeKey)) {
+
+                        System.out.println(
+                                "Native library detected: "
+                                        + nativeKey
+                        );
+
+
+                        install(
+                                classifiers.getAsJsonObject(nativeKey),
+                                librariesDir
+                        );
+                    }
+                }
+
+            } else if (library.has("name")) {
+
+                System.out.println(
+                        "Resolving Maven library: "
+                                + library.get("name").getAsString()
+                );
+
+
+                installMaven(
+                        library.get("name").getAsString(),
+                        librariesDir
+                );
             }
         }
 
-        // --- Extra safety: force joptsimple if missing ---
-        Path joptsimpleJar = librariesDir.resolve("joptsimple/joptsimple/5.0.1/joptsimple-5.0.1.jar");
-        if (!Files.exists(joptsimpleJar)) {
-            try {
-                Files.createDirectories(joptsimpleJar.getParent());
-                try (InputStream in = new URL("https://libraries.minecraft.net/joptsimple/joptsimple/5.0.1/joptsimple-5.0.1.jar").openStream()) {
-                    Files.copy(in, joptsimpleJar);
-                    System.out.println("Forced download: joptsimple-5.0.1.jar");
+
+        System.out.println(
+                "Library Installation Finished"
+        );
+    }
+
+
+
+    private static void install(
+            JsonObject artifact,
+            Path librariesDir
+    ) {
+
+        try {
+
+            if (!artifact.has("path")) {
+                System.out.println(
+                        "Skipping artifact without path"
+                );
+                return;
+            }
+
+
+            String pathString =
+                    artifact.get("path")
+                            .getAsString();
+
+
+            String url =
+                    artifact.has("url")
+                            ? artifact.get("url")
+                            .getAsString()
+                            : "https://libraries.minecraft.net/"
+                            + pathString;
+
+
+            Path path =
+                    librariesDir.resolve(pathString);
+
+
+            download(
+                    url,
+                    path
+            );
+
+
+        } catch (Exception e) {
+
+            System.err.println(
+                    "Library failed: "
+                            + e.getMessage()
+            );
+        }
+    }
+
+
+
+    private static void installMaven(
+            String name,
+            Path librariesDir
+    ) {
+
+        MavenArtifactResolver.Artifact artifact =
+                MavenArtifactResolver.resolve(
+                        name,
+                        librariesDir
+                );
+
+
+        if (artifact == null) {
+
+            System.err.println(
+                    "Could not resolve: "
+                            + name
+            );
+
+            return;
+        }
+
+
+        download(
+                artifact.url(),
+                artifact.path()
+        );
+    }
+
+
+
+    private static void download(
+            String url,
+            Path destination
+    ) {
+
+        try {
+
+            if (Files.exists(destination)) {
+
+                System.out.println(
+                        "Already exists: "
+                                + destination
+                );
+
+                return;
+            }
+
+
+            Path parent =
+                    destination.getParent();
+
+
+            if (parent != null) {
+                Files.createDirectories(parent);
+            }
+
+
+            System.out.println(
+                    "Downloading: "
+                            + destination
+            );
+
+
+            URLConnection connection =
+                    new URL(url).openConnection();
+
+
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(30000);
+
+
+            try (InputStream in =
+                         connection.getInputStream()) {
+
+
+                Files.copy(
+                        in,
+                        destination,
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            }
+
+
+            System.out.println(
+                    "Downloaded: "
+                            + destination
+            );
+
+
+        } catch (Exception e) {
+
+            throw new RuntimeException(
+                    "Failed downloading "
+                            + url,
+                    e
+            );
+        }
+    }
+
+
+
+    private static boolean allowed(
+            JsonObject library,
+            String os
+    ) {
+
+        if (!library.has("rules")) {
+            return true;
+        }
+
+
+        JsonArray rules =
+                library.getAsJsonArray("rules");
+
+
+        boolean allowed = false;
+
+
+        for (int i = 0; i < rules.size(); i++) {
+
+            JsonObject rule =
+                    rules.get(i)
+                            .getAsJsonObject();
+
+
+            String action =
+                    rule.has("action")
+                            ? rule.get("action")
+                            .getAsString()
+                            : "allow";
+
+
+            boolean matchesOS = true;
+
+
+            if (rule.has("os")) {
+
+                JsonObject osRule =
+                        rule.getAsJsonObject("os");
+
+
+                if (osRule.has("name")) {
+
+                    matchesOS =
+                            osRule.get("name")
+                                    .getAsString()
+                                    .equals(os);
                 }
-            } catch (Exception e) {
-                System.err.println("Failed to download joptsimple manually: " + e.getMessage());
+            }
+
+
+            if (matchesOS) {
+
+                allowed =
+                        action.equals("allow");
             }
         }
+
+
+        return allowed;
+    }
+
+
+
+    private static String detectOS() {
+
+        String os =
+                System.getProperty("os.name")
+                        .toLowerCase(Locale.ROOT);
+
+
+        if (os.contains("win")) {
+            return "windows";
+        }
+
+
+        if (os.contains("mac")) {
+            return "osx";
+        }
+
+
+        return "linux";
     }
 }

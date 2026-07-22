@@ -19,7 +19,7 @@ public class LauncherInstancesMain {
         dialog.setShape(new RoundRectangle2D.Double(0, 0, 600, 700, arc, arc));
 
         dialog.setLocationRelativeTo(parent);
-        dialog.getContentPane().setBackground(new Color(23, 23, 23));
+        dialog.getContentPane().setBackground(Color.decode("#000000"));
         dialog.setLayout(null);
 
         JLabel title = new JLabel("Instances");
@@ -37,6 +37,19 @@ public class LauncherInstancesMain {
         close.setBorder(null);
         close.addActionListener(e -> dialog.dispose());
         dialog.add(close);
+
+        JButton newI = new JButton("+");
+        newI.setBounds(490, 15, 50, 50);
+        newI.setForeground(Color.WHITE);
+        newI.setFont(new Font("Arial", Font.BOLD, 16));
+        newI.setBackground(null);
+        newI.setFocusable(false);
+        newI.setBorder(null);
+        newI.addActionListener(e -> {
+            NInstancePanel newInst = new NInstancePanel();
+            newInst.launchNInstancePanel(parent);
+        });
+        dialog.add(newI);
 
         InstanceListPanel listPanel = new InstanceListPanel();
 

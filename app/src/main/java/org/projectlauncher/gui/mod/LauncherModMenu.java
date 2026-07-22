@@ -76,13 +76,9 @@ public class LauncherModMenu {
 
         for (Mod mod : modList) {
             JPanel modEntry = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-            modEntry.setBackground(Color.decode("#111111"));
+            modEntry.setBackground(Color.decode("#000000"));
             modEntry.setMaximumSize(new Dimension(540, 60));
-
-            // Icon
             JLabel iconLabel = new JLabel(mod.icon != null ? mod.icon : new ImageIcon("default_icon.png"));
-
-            // Name
             JLabel nameLabel = new JLabel(mod.name);
             nameLabel.setForeground(Color.WHITE);
             nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));

@@ -1,4 +1,5 @@
 package org.projectlauncher.gui;
+
 import java.awt.geom.RoundRectangle2D;
 import org.projectlauncher.instances.*;
 
@@ -7,16 +8,16 @@ import java.awt.*;
 
 public class ModifyInstanceMenu {
     public void launchModifyInstanceMenu(Window parent, Instance instance) {
-        String wTitle = "Modify Instance : "+instance.name;
+        String wTitle = "Modify Instance : " + instance.name;
         JDialog dialog = new JDialog(parent, wTitle, Dialog.ModalityType.APPLICATION_MODAL);
         dialog.setSize(800, 500);
         dialog.setUndecorated(true);
 
         float arc = 30f;
-        dialog.setShape(new RoundRectangle2D.Double(0,0,800,500,arc,arc));
+        dialog.setShape(new RoundRectangle2D.Double(0, 0, 800, 500, arc, arc));
 
         dialog.setLocationRelativeTo(parent);
-        dialog.getContentPane().setBackground(Color.decode("#111111"));
+        dialog.getContentPane().setBackground(Color.decode("#000000"));
         dialog.setLayout(null);
 
         JLabel title = new JLabel(wTitle);
@@ -27,7 +28,7 @@ public class ModifyInstanceMenu {
         dialog.add(title);
 
         JButton close = new JButton("X");
-        close.setBounds(730,15,50,50);
+        close.setBounds(730, 15, 50, 50);
         close.setForeground(Color.WHITE);
         close.setFont(new Font("Arial", Font.BOLD, 16));
         close.setBackground(null);

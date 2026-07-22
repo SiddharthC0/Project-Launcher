@@ -8,7 +8,7 @@ public class InstanceItem extends RoundedPanel {
 
     public InstanceItem(Instance instance) {
 
-        super(null, 30, Color.decode("#111111")); // layout, radius, color
+        super(null, 30, Color.decode("#000000")); // layout, radius, color
 
         setLayout(null);
         setBounds(0, 0, 560, 65);
@@ -27,7 +27,7 @@ public class InstanceItem extends RoundedPanel {
         ModifyInstanceMenu mim = new ModifyInstanceMenu();
         RoundedButton modifyBtn = new RoundedButton("Modify", 15);
         modifyBtn.setBounds(445, 15, 100, 35);
-        modifyBtn.setBackground(Color.decode("#171717"));
+        modifyBtn.setBackground(Color.decode("#111111"));
         modifyBtn.setForeground(Color.WHITE);
         modifyBtn.addActionListener(e -> {
             mim.launchModifyInstanceMenu(parent, instance);

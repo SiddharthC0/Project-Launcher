@@ -15,7 +15,7 @@ public class RoundedComboBox<E> extends JComboBox<E> {
         setOpaque(false);
         setFocusable(false);
         setBorder(null);
-        setBackground(Color.decode("#171717"));
+        setBackground(Color.decode("#111111"));
         setForeground(Color.WHITE);
         setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 
@@ -23,10 +23,10 @@ public class RoundedComboBox<E> extends JComboBox<E> {
         setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value,
-                                                          int index, boolean isSelected, boolean cellHasFocus) {
+                    int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel lbl = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 lbl.setOpaque(true);
-                lbl.setBackground(Color.decode("#171717"));
+                lbl.setBackground(Color.decode("#111111"));
                 lbl.setForeground(Color.WHITE);
                 lbl.setBorder(new EmptyBorder(5, 10, 5, 10));
                 return lbl;

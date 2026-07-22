@@ -11,7 +11,7 @@ public class InstanceListPanel extends JPanel {
 
     public InstanceListPanel() {
         setLayout(null);
-        setBackground(new Color(23,23,23));
+        setBackground(Color.decode("#000000"));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class InstanceListPanel extends JPanel {
 
         @Override
         protected void configureScrollBarColors() {
-            thumbColor = new Color(70,70,70);
-            trackColor = new Color(23,23,23);
+            thumbColor = new Color(70, 70, 70);
+            trackColor = new Color(0, 0, 0);
         }
 
         @Override
@@ -63,9 +63,9 @@ public class InstanceListPanel extends JPanel {
 
         private JButton createInvisibleButton() {
             JButton btn = new JButton();
-            btn.setPreferredSize(new Dimension(0,0));
-            btn.setMinimumSize(new Dimension(0,0));
-            btn.setMaximumSize(new Dimension(0,0));
+            btn.setPreferredSize(new Dimension(0, 0));
+            btn.setMinimumSize(new Dimension(0, 0));
+            btn.setMaximumSize(new Dimension(0, 0));
             return btn;
         }
 
@@ -76,15 +76,15 @@ public class InstanceListPanel extends JPanel {
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
 
-            g2.setColor(new Color(80,80,80));
-            g2.fillRoundRect(r.x+2, r.y, r.width-4, r.height, 10,10);
+            g2.setColor(new Color(80, 80, 80));
+            g2.fillRoundRect(r.x + 2, r.y, r.width - 4, r.height, 10, 10);
 
             g2.dispose();
         }
 
         @Override
         protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
-            g.setColor(new Color(23,23,23));
+            g.setColor(Color.decode("#000000"));
             g.fillRect(r.x, r.y, r.width, r.height);
         }
     }

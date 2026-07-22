@@ -2,96 +2,102 @@ package org.projectlauncher.launch;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.nio.file.Path;
 
-public class MinecraftLauncher {
+public final class MinecraftLauncher {
 
-    /**
-     * Launch Minecraft with proper classpath, natives, and assets handling.
-     *
-     * @param downloadsDir The launcher downloads folder (contains client.jar and libraries)
-     * @param nativesDir   The folder where native libraries are extracted
-     * @param assetsDir    The assets folder
-     * @param assetIndexId The asset index id
-     * @param versionId    The Minecraft version (vanilla or modded)
-     * @param username     The username to use (offline or online)
-     */
-    public static void launchMinecraft(Path downloadsDir,
-                                       Path nativesDir,
-                                       Path assetsDir,
-                                       String assetIndexId,
-                                       String versionId,
-                                       String username,
-                                       String xmxJVM) {
-
-        try {
-            List<String> command = new ArrayList<>();
-
-            // Java executable
-            String javaExe = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
-            command.add(javaExe);
-
-            // JVM options
-            command.add(xmxJVM);
-            command.add("-Djava.library.path=" + nativesDir.toAbsolutePath());
-
-            // Build classpath from all libraries + client.jar
-            List<Path> libraryJars = Files.walk(downloadsDir.resolve("libraries"))
-                    .filter(Files::isRegularFile)
-                    .filter(p -> p.toString().endsWith(".jar"))
-                    .collect(Collectors.toList());
-
-            libraryJars.add(downloadsDir.resolve("client.jar")); // client.jar
-
-            String classpath = libraryJars.stream()
-                    .map(Path::toString)
-                    .collect(Collectors.joining(System.getProperty("path.separator")));
-
-            command.add("-cp");
-            command.add(classpath);
-
-            // Minecraft main class
-            command.add("net.minecraft.client.main.Main");
-
-            // Minecraft arguments
-            command.add("--username");
-            command.add(username);
-
-            command.add("--version");
-            command.add(versionId);
-
-            Path gameDir = downloadsDir.getParent(); // launcher-data as gameDir
-            command.add("--gameDir");
-            command.add(gameDir.toAbsolutePath().toString());
-
-            command.add("--assetsDir");
-            command.add(assetsDir.toAbsolutePath().toString());
-
-            command.add("--assetIndex");
-            command.add(assetIndexId);
-
-            command.add("--accessToken");
-            command.add("offline-token"); // offline mode
-
-            // Optional window size
-            command.add("--width");
-            command.add("854");
-            command.add("--height");
-            command.add("480");
-
-            // Start process
-            ProcessBuilder pb = new ProcessBuilder(command);
-            pb.inheritIO();
-            pb.start();
-
-            System.out.println("Minecraft launched with version: " + versionId);
-
-        } catch (IOException e) {
-            System.err.println("Failed to launch Minecraft!");
-            e.printStackTrace();
-        }
+    private MinecraftLauncher() {
     }
+
+
+    public static Process launch(
+            LaunchConfiguration config
+    ) throws IOException {
+
+        List<String> command =
+                new ArrayList<>();
+
+        command.add(
+                getJavaExecutable()
+        );
+
+        command.addAll(
+                config.getJvmArguments()
+        );
+        for (Path path : config.getClasspath()) {
+            System.out.println(path.toAbsolutePath());
+        }
+        command.add(
+                "-cp"
+        );
+
+        command.add(
+                buildClasspath(config)
+        );
+
+        command.add(
+                config.getMainClass()
+        );
+
+        command.addAll(
+                config.getGameArguments()
+        );
+        System.out.println("\n========== CLASSPATH ==========");
+        System.out.println(buildClasspath(config));
+        System.out.println("================================\n");
+
+        System.out.println("Main class = " + config.getMainClass());
+
+        System.out.println("\n========== COMMAND ==========");
+        System.out.println(String.join(" ", command));
+        System.out.println("=============================\n");
+
+        ProcessBuilder builder =
+                new ProcessBuilder(command);
+
+        builder.directory(
+                config.getGameDirectory().toFile()
+        );
+
+        builder.inheritIO();
+        System.out.println("Exists: " + config.getClientJar().toAbsolutePath());
+        System.out.println("Exists? " + config.getClientJar().toFile().exists());
+        System.out.println("Size: " + config.getClientJar().toFile().length());
+        System.out.println("Absolute: " + config.getClientJar().toAbsolutePath());
+
+        System.out.println("\n===== ABSOLUTE CLASSPATH =====");
+
+        for (Path p : config.getClasspath()) {
+            System.out.println(p.toAbsolutePath());
+        }
+
+        System.out.println("==============================");
+        return builder.start();
+    }
+
+
+    private static String getJavaExecutable() {
+
+        return System.getProperty("java.home")
+                + File.separator
+                + "bin"
+                + File.separator
+                + "java";
+    }
+
+
+    private static String buildClasspath(
+        LaunchConfiguration config
+    ) {
+
+    return String.join(
+            File.pathSeparator,
+            config.getClasspath()
+                    .stream()
+                    .map(path -> path.toAbsolutePath().toString())
+                    .toList()
+    );
+}
 }
