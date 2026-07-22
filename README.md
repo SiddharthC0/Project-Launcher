@@ -8,7 +8,7 @@ Welcome to the world of powerful tools, where one of the coolest tool could be *
 Launcher sample - In early development
 
 <p align="center">
-  <img src="resources/pl_features_text.png" height="400" alt="Features">
+  <img src="resources/pl_features_text.png" height="40" alt="Features">
 </p>
 
 - **Multi Synced Instance Management** - Manage your instances from multiple devices and install them on all your devices, with synchronized settings, accounts and data (servers)
