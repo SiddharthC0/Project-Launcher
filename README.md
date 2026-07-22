@@ -8,7 +8,7 @@ Welcome to the world of powerful tools, where one of the coolest tool could be *
 Launcher sample - In early development
 
 <p align="center">
-  <img src="resources/pl_features_text.png" height="40" alt="Features">
+  <img src="resources/pl_features_text.png" height="70" alt="Features">
 </p>
 
 - **Multi Synced Instance Management** - Manage your instances from multiple devices and install them on all your devices, with synchronized settings, accounts and data (servers)
@@ -18,7 +18,9 @@ Launcher sample - In early development
 - **Bedrock Edition support**: Support for bedrock edition instance management. Beware that this requires a microsoft account with a bedrock edition purchase!
 - **Optimal Seting Management Execution on each launch**: Your minecraft version's specifications and settings will be optimized with your computers specifications as soon as you launch the game, allowing you to focus on the game instead of tweaking your render distance up and down.
 
-![Development](resources/pl_development_text.png)
+<p align="center">
+  <img src="resources/pl_development_text.png" height="70" alt="Development">
+</p>
 
 ⚠️ Project launcher is currently under beta testing, If you want to, you can just get the build, but I am not responsible for:
  - Missing features
@@ -26,7 +28,9 @@ Launcher sample - In early development
  - Errors
  - And other promised stuff
 
-![Builds](resources/pl_builds_text.png)
+<p align="center">
+  <img src="resources/pl_builds_text.png" height="70" alt="Builds">
+</p>
 
 Current build: betaV1.3.0 REVAMPED
 -> Downloads under builds section
