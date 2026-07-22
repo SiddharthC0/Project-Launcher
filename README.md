@@ -1,1 +1,1 @@
-![Project Launcher Screenshot](resources/pl_title_c.png)
+![Project Launcher Screenshot](resources/released.png)
