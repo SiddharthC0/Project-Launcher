@@ -7,7 +7,9 @@ Welcome to the world of powerful tools, where one of the coolest tool could be *
 
 Launcher sample - In early development
 
-![Features](resources/pl_features_text.png)
+<p align="center">
+  <img src="resources/pl_features_text.png" height="400" alt="Features">
+</p>
 
 - **Multi Synced Instance Management** - Manage your instances from multiple devices and install them on all your devices, with synchronized settings, accounts and data (servers)
 - **Legacy Console Edition Instances** - Allows you to use a Minecraft LCE (XBOX360 or PS3, PS4 support is not ready) ROM to launch instances, remember that the ROM is required to run the game, with custom PLCE Emulator optimized for the best experience.
