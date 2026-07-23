@@ -3,7 +3,7 @@
 
 Welcome to the world of powerful tools, where one of the coolest tool could be **Project Launcher**. Project launcher is a powerful, modern, and fully-featured Minecraft launcher designed with performance, customization, and simplicity in mind. Built in Java, it supports both offline play and advanced features, giving players full control over their Minecraft experience. Whether you’re a casual player or a mod enthusiast, Project Launcher makes launching Minecraft smooth, efficient, and stress-free.
 
-![Sample](resources/sample.png)
+![Sample](resources/sample2.png)
 
 Launcher sample - In early development
 
