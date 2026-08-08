@@ -5,68 +5,141 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class RoundedButton extends JButton {
+
     private int cornerRadius;
 
     public RoundedButton(String text, int radius) {
+
         super(text);
+
         this.cornerRadius = radius;
-        setContentAreaFilled(false); // prevent default fill
+
+        setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
-        setOpaque(false); // IMPORTANT for transparency
+        setOpaque(false);
+        setDoubleBuffered(true);
+
         setForeground(Color.WHITE);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        // Optional hover effect
         addMouseListener(new MouseAdapter() {
+
             @Override
-            public void mouseEntered(MouseEvent e) { repaint(); }
+            public void mouseEntered(MouseEvent e) {
+                repaint();
+            }
+
             @Override
-            public void mouseExited(MouseEvent e) { repaint(); }
+            public void mouseExited(MouseEvent e) {
+                repaint();
+            }
+
             @Override
-            public void mousePressed(MouseEvent e) { repaint(); }
+            public void mousePressed(MouseEvent e) {
+                repaint();
+            }
+
             @Override
-            public void mouseReleased(MouseEvent e) { repaint(); }
+            public void mouseReleased(MouseEvent e) {
+                repaint();
+            }
         });
     }
 
+
     @Override
     protected void paintComponent(Graphics g) {
+
         Graphics2D g2 = (Graphics2D) g.create();
 
-        // Smooth corners
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Clear previous translucent frames
+        g2.setComposite(AlphaComposite.Clear);
+        g2.fillRect(0, 0, getWidth(), getHeight());
 
-        // Choose color based on state
+        g2.setComposite(AlphaComposite.SrcOver);
+
+
+        g2.setRenderingHint(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON
+        );
+
+        g2.setRenderingHint(
+                RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY
+        );
+
+
+        Color bg = getBackground();
+
+        Color drawColor = bg;
+
+
+        // Hover effect without changing alpha
         if (getModel().isPressed()) {
-            g2.setColor(getBackground().darker());
+
+            drawColor = new Color(
+                    Math.max(bg.getRed() - 30, 0),
+                    Math.max(bg.getGreen() - 30, 0),
+                    Math.max(bg.getBlue() - 30, 0),
+                    bg.getAlpha()
+            );
+
         } else if (getModel().isRollover()) {
-            g2.setColor(getBackground().brighter());
-        } else {
-            g2.setColor(getBackground());
+
+            drawColor = new Color(
+                    Math.min(bg.getRed() + 30, 255),
+                    Math.min(bg.getGreen() + 30, 255),
+                    Math.min(bg.getBlue() + 30, 255),
+                    bg.getAlpha()
+            );
         }
 
-        // Draw the rounded rectangle
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
 
-        // Draw text centered
-        FontMetrics fm = g2.getFontMetrics();
-        int stringWidth = fm.stringWidth(getText());
-        int stringHeight = fm.getAscent();
-        int x = (getWidth() - stringWidth) / 2;
-        int y = (getHeight() + stringHeight) / 2 - 2;
-        g2.setColor(getForeground());
+        g2.setColor(drawColor);
+
+        g2.fillRoundRect(
+                0,
+                0,
+                getWidth(),
+                getHeight(),
+                cornerRadius,
+                cornerRadius
+        );
+
+
+        // Draw text
         g2.setFont(getFont());
-        g2.drawString(getText(), x, y);
+        g2.setColor(getForeground());
+
+        FontMetrics fm = g2.getFontMetrics();
+
+        int textWidth = fm.stringWidth(getText());
+        int textHeight = fm.getAscent();
+
+        int x = (getWidth() - textWidth) / 2;
+        int y = (getHeight() + textHeight) / 2 - 2;
+
+        g2.drawString(
+                getText(),
+                x,
+                y
+        );
+
 
         g2.dispose();
     }
 
+
     @Override
     public Dimension getPreferredSize() {
+
         Dimension size = super.getPreferredSize();
-        size.width += cornerRadius;  // add some extra space for radius
+
+        size.width += cornerRadius;
         size.height += cornerRadius;
+
         return size;
     }
 }

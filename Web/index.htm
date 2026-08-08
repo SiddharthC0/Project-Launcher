@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Launcher</title>
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+<body>
+<div id="mc-loading">
+
+    <div class="loading-content">
+
+        <div class="loading-text">
+            Loading terrain...
+        </div>
+
+    </div>
+
+</div>
+<nav class="navbar">
+
+<div class="left">
+<a class="nav-btn" onclick="goTo('home')">Home</a>
+<a class="nav-btn" onclick="goTo('features')">Features</a>
+</div>
+
+<div class="brand">
+<h1>Project Launcher</h1>
+</div>
+
+<div class="right">
+<a class="nav-btn" onclick="goTo('download')">Download</a>
+<a class="nav-btn" onclick="goTo('info')">Information</a>
+</div>
+
+</nav>
+
+
+<div class="container">
+
+
+<section class="screen" id="home">
+
+<video class="video" autoplay muted loop>
+<source src="background_new.mp4">
+</video>
+
+
+<div class="hero-text">
+
+<h1>
+Experience a newer<br>way to play with<br><b style="font-size: 74px; margin-bottom: 0%; text-shadow: 0px 1px 40px rgb(121, 121, 198); color: rgb(121, 121, 198);">Project Launcher</b>
+</h1>
+
+<p>
+We can focus on other stuff.<br> You can focus on your game.<br>How does the deal sound?
+</p>
+<div class="launcher">
+    <div class="launcher-titlebar">
+        <h1>PROJECT LAUNCHER</h1>
+
+        <div class="window-buttons">
+            <button>-</button>
+            <button>X</button>
+        </div>
+    </div>
+
+    <div class="launcher-sidebar">
+        <button>Home</button>
+        <button>Account</button>
+        <button>Settings</button>
+        <button>Mods</button>
+    </div>
+
+    <div class="launcher-content">
+        <h2>Welcome to PL-Nebula-1.4.0</h2>
+
+        <div class="console">
+            Console output here...
+        </div>
+
+        <button class="play">PLAY</button>
+    </div>
+
+    <div class="launcher-instances">
+        <h3>Instances</h3>
+
+        <button>Survival</button>
+        <button>Modded</button>
+    </div>
+</div>
+<br>    
+<button class="move back-btn" onclick="next()">
+Keep reading.
+</button>
+
+</div>
+
+
+</section>
+
+
+
+<section class="screen" id="features">
+<video class="video-2" autoplay muted loop>
+<source src="background2_new.mp4">
+</video>
+
+
+<div class="hero-text-2">
+<h1>You no longer need<br>to sync again.</h1>
+
+<p>
+Yeah, you heard it right. Data can be hard to transfer, expecially minecraft data, that is stored somewhere deep in your computer. Hence to fix this problem, I've come up with the solution of syncronization. Now you can export your launcher data and minecraft instance data, along with all your mods, whenever you want. So you should buy your new computer without any regrets.
+</p>
+
+</div>
+
+<button class="move next-btn" onclick="next()">
+NEXT ↓
+</button>
+
+<button class="move back-btn" onclick="back()">
+↑ GO BACK
+</button>
+
+</section>
+
+
+
+<section class="screen" id="download">
+
+<video class="video-3" autoplay muted loop>
+<source src="pwframe.mp4">
+</video>
+
+
+<div class="hero-text-3">
+<h1>
+Download
+</h1>
+
+<div class="download-panel">
+
+    <div class="download-header">
+        <span>Version</span>
+        <span>Platform</span>
+        <span>Type</span>
+        <span>Code</span>
+        <span></span>
+    </div>
+
+    <div class="download-row">
+        <span>v3.0.0 <b class="latest">LATEST</b></span>
+        <span>Windows</span>
+        <span>Installer</span>
+        <span>Nebula</span>
+
+        <button class="download-btn">
+            DOWNLOAD
+        </button>
+    </div>
+
+    <div class="download-row">
+        <span>v3.0.0 <b class="latest">LATEST</b></span>
+        <span>Windows</span>
+        <span>Portable</span>
+        <span>Nebula</span>
+
+        <button class="download-btn">
+            DOWNLOAD
+        </button>
+    </div>
+
+    <div class="download-row">
+        <span>v2.9.0 <b class="latest" style="background-color: rgb(247, 48, 48);">OLD</b></span>
+        <span>Windows</span>
+        <span>Portable</span>
+        <span>Salt</span>
+
+        <button class="download-btn">
+            DOWNLOAD
+        </button>
+    </div>
+</div>
+
+</div>
+
+<button class="move back-btn" onclick="back()">
+↑ GO BACK
+</button>
+
+<button class="move next-btn" onclick="next()">
+NEXT ↓
+</button>
+</section>
+
+<section class="screen" id="info">
+
+    <div class="portal-particles"></div>
+    <div class="center">
+        <div class="hero-text-3">
+            <h1>
+                Information
+            </h1>
+            <p>
+                <b style="color: whitesmoke;">Project Launcher Nebula, Project Launcher Salt, Project Launcher Themes, Project Launcher as a whole and Project Launcher Website</b> was innovated and developed by Siddy (SwiftyyCommon90 / Siddharth). I do not reccomend you to steal code from the repository / other sources as the program is open sourced, its a bad practice. The program is under custom license. Kindly do not steal code or its parts without permission (Just ask for permission). Contact siddy0060@gmail.com for more information. 
+                <br> 
+                Thank you for reading.
+            </p>
+        </div>
+    </div>
+
+
+
+<button class="move back-btn" onclick="back()">
+↑ GO BACK
+</button>
+</section>
+
+</div>
+
+<script src="main.js"></script>
+
+
+</body>
+</html>

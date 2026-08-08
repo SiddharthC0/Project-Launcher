@@ -4,14 +4,21 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import org.projectlauncher.instances.*;
+import org.projectlauncher.utils.*;
 
 public class InstanceListPanel extends JPanel {
+    static ThemeDetector.Theme theme = ThemeDetector.getTheme();
 
+    static Color backgroundColor1 = theme.backgroundColor1;
+    static Color backgroundColor2 = theme.backgroundColor2;
+    Color textColor1 = theme.textColor1;
+    Color textColor2 = theme.textColor2;
+    Color buttonColor = theme.buttonColor;
     int currentY = 10;
 
     public InstanceListPanel() {
         setLayout(null);
-        setBackground(Color.decode("#000000"));
+        setBackground(backgroundColor1);
     }
 
     @Override
@@ -84,7 +91,7 @@ public class InstanceListPanel extends JPanel {
 
         @Override
         protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
-            g.setColor(Color.decode("#000000"));
+            g.setColor(backgroundColor1);
             g.fillRect(r.x, r.y, r.width, r.height);
         }
     }

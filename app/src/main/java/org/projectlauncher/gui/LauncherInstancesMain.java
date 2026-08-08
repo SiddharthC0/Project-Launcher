@@ -6,10 +6,18 @@ import java.awt.geom.RoundRectangle2D;
 
 import org.projectlauncher.instances.InstanceManager;
 import org.projectlauncher.instances.Instance;
+import org.projectlauncher.utils.*;
 
 public class LauncherInstancesMain {
 
     public void launchInstancesMenu(JFrame parent) {
+        ThemeDetector.Theme theme = ThemeDetector.getTheme();
+
+        Color backgroundColor1 = theme.backgroundColor1;
+        Color backgroundColor2 = theme.backgroundColor2;
+        Color textColor1 = theme.textColor1;
+        Color textColor2 = theme.textColor2;
+        Color buttonColor = theme.buttonColor;
 
         JDialog dialog = new JDialog(parent, "Instances", true); // MODAL
         dialog.setSize(600, 700);
@@ -19,18 +27,18 @@ public class LauncherInstancesMain {
         dialog.setShape(new RoundRectangle2D.Double(0, 0, 600, 700, arc, arc));
 
         dialog.setLocationRelativeTo(parent);
-        dialog.getContentPane().setBackground(Color.decode("#000000"));
+        dialog.getContentPane().setBackground(backgroundColor1);
         dialog.setLayout(null);
 
         JLabel title = new JLabel("Instances");
         title.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
-        title.setForeground(Color.WHITE);
+        title.setForeground(textColor2);
         title.setBounds(20, 20, 300, 40);
         dialog.add(title);
 
         JButton close = new JButton("X");
         close.setBounds(550, 15, 50, 50);
-        close.setForeground(Color.WHITE);
+        close.setForeground(textColor2);
         close.setFont(new Font("Arial", Font.BOLD, 16));
         close.setBackground(null);
         close.setFocusable(false);
@@ -40,7 +48,7 @@ public class LauncherInstancesMain {
 
         JButton newI = new JButton("+");
         newI.setBounds(490, 15, 50, 50);
-        newI.setForeground(Color.WHITE);
+        newI.setForeground(textColor2);
         newI.setFont(new Font("Arial", Font.BOLD, 16));
         newI.setBackground(null);
         newI.setFocusable(false);

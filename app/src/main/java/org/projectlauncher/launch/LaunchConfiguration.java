@@ -26,6 +26,7 @@ public final class LaunchConfiguration {
     private final List<String> gameArguments;
     private final List<Path> classpath;
 
+
     public LaunchConfiguration(
             Path gameDirectory,
             Path assetsDirectory,
@@ -44,26 +45,78 @@ public final class LaunchConfiguration {
             List<String> gameArguments,
             List<Path> classpath) {
 
-        this.gameDirectory = Objects.requireNonNull(gameDirectory);
-        this.assetsDirectory = Objects.requireNonNull(assetsDirectory);
-        this.librariesDirectory = Objects.requireNonNull(librariesDirectory);
-        this.nativesDirectory = Objects.requireNonNull(nativesDirectory);
-        this.clientJar = Objects.requireNonNull(clientJar);
 
-        this.versionId = Objects.requireNonNull(versionId);
-        this.assetIndexId = Objects.requireNonNull(assetIndexId);
-        this.mainClass = Objects.requireNonNull(mainClass);
+        this.gameDirectory =
+                Objects.requireNonNull(gameDirectory,
+                        "Game directory cannot be null");
 
-        this.username = Objects.requireNonNull(username);
-        this.uuid = Objects.requireNonNull(uuid);
-        this.accessToken = Objects.requireNonNull(accessToken);
-        this.userType = Objects.requireNonNull(userType);
-        this.versionType = Objects.requireNonNull(versionType);
+        this.assetsDirectory =
+                Objects.requireNonNull(assetsDirectory,
+                        "Assets directory cannot be null");
 
-        this.jvmArguments = List.copyOf(jvmArguments);
-        this.gameArguments = List.copyOf(gameArguments);
-        this.classpath = List.copyOf(classpath);
+        this.librariesDirectory =
+                Objects.requireNonNull(librariesDirectory,
+                        "Libraries directory cannot be null");
+
+        this.nativesDirectory =
+                Objects.requireNonNull(nativesDirectory,
+                        "Natives directory cannot be null");
+
+        this.clientJar =
+                Objects.requireNonNull(clientJar,
+                        "Client jar cannot be null");
+
+
+        this.versionId =
+                Objects.requireNonNull(versionId,
+                        "Version ID cannot be null");
+
+        this.assetIndexId =
+                Objects.requireNonNull(assetIndexId,
+                        "Asset index ID cannot be null");
+
+        this.mainClass =
+                Objects.requireNonNull(mainClass,
+                        "Main class cannot be null");
+
+
+        this.username =
+                Objects.requireNonNull(username,
+                        "Username cannot be null");
+
+        this.uuid =
+                Objects.requireNonNull(uuid,
+                        "UUID cannot be null");
+
+        this.accessToken =
+                Objects.requireNonNull(accessToken,
+                        "Access token cannot be null");
+
+        this.userType =
+                Objects.requireNonNull(userType,
+                        "User type cannot be null");
+
+        this.versionType =
+                Objects.requireNonNull(versionType,
+                        "Version type cannot be null");
+
+
+        this.jvmArguments =
+                jvmArguments == null
+                        ? List.of()
+                        : List.copyOf(jvmArguments);
+
+        this.gameArguments =
+                gameArguments == null
+                        ? List.of()
+                        : List.copyOf(gameArguments);
+
+        this.classpath =
+                classpath == null
+                        ? List.of()
+                        : List.copyOf(classpath);
     }
+
 
     public Path getGameDirectory() {
         return gameDirectory;
@@ -85,6 +138,7 @@ public final class LaunchConfiguration {
         return clientJar;
     }
 
+
     public String getVersionId() {
         return versionId;
     }
@@ -96,6 +150,7 @@ public final class LaunchConfiguration {
     public String getMainClass() {
         return mainClass;
     }
+
 
     public String getUsername() {
         return username;
@@ -117,6 +172,7 @@ public final class LaunchConfiguration {
         return versionType;
     }
 
+
     public List<String> getJvmArguments() {
         return jvmArguments;
     }
@@ -127,5 +183,29 @@ public final class LaunchConfiguration {
 
     public List<Path> getClasspath() {
         return classpath;
+    }
+
+
+    @Override
+    public String toString() {
+        return "LaunchConfiguration{" +
+                "gameDirectory=" + gameDirectory +
+                ", assetsDirectory=" + assetsDirectory +
+                ", librariesDirectory=" + librariesDirectory +
+                ", nativesDirectory=" + nativesDirectory +
+                ", clientJar=" + clientJar +
+                ", versionId='" + versionId + '\'' +
+                ", assetIndexId='" + assetIndexId + '\'' +
+                ", mainClass='" + mainClass + '\'' +
+                ", username='" + username + '\'' +
+                ", userType='" + userType + '\'' +
+                ", versionType='" + versionType + '\'' +
+                ", jvmArguments=" + jvmArguments.size() +
+                " args" +
+                ", gameArguments=" + gameArguments.size() +
+                " args" +
+                ", classpath=" + classpath.size() +
+                " files" +
+                '}';
     }
 }

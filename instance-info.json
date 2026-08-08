@@ -289,6 +289,46 @@
         "-Xmx2G",
         "-Xms1G"
       ]
+    },
+    {
+      "name": "1.19.4",
+      "version": "1.19.4",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.19.4",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "fabric-loader-0.19.3-26.1.2",
+      "version": "fabric-loader-0.19.3-26.1.2",
+      "type": "Fabric",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\fabric-loader-0.19.3-26.1.2",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "1.21.1",
+      "version": "1.21.1",
+      "type": "Vanilla",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\1.21.1",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
+    },
+    {
+      "name": "neoforge-21.1.248",
+      "version": "neoforge-21.1.248",
+      "type": "Forge",
+      "gameDir": "C:\\Users\\Siddharth C\\AppData\\Roaming\\.minecraft\\versions\\neoforge-21.1.248",
+      "jvmArgs": [
+        "-Xmx2G",
+        "-Xms1G"
+      ]
     }
   ]
 }

@@ -12,3 +12,8 @@ app/launcher-data/*
 !app/launcher-data/version_jsons/
 
 launcher-data/*
+launcher-data.json
+.idea/
+.vscode/
+logs/
+versions/

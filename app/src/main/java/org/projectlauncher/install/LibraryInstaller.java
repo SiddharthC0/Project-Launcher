@@ -1,6 +1,7 @@
 package org.projectlauncher.install;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.InputStream;
@@ -10,7 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Locale;
-
+import java.util.Map;
+import java.io.IOException;
 public final class LibraryInstaller {
 
     private LibraryInstaller() {
@@ -19,107 +21,273 @@ public final class LibraryInstaller {
 
     public static void downloadLibraries(
             JsonObject versionJson,
-            Path librariesDir
+            Path librariesDir,
+            Path nativesDir
     ) {
 
         System.out.println("Library Installer Started");
 
+
         try {
             Files.createDirectories(librariesDir);
+            Files.createDirectories(nativesDir);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
 
         if (!versionJson.has("libraries")) {
+
             System.out.println("No libraries found.");
             return;
         }
 
 
-        JsonArray libraries =
-                versionJson.getAsJsonArray("libraries");
-
+        JsonArray libraries = versionJson.getAsJsonArray("libraries");
+        System.out.println(
+                "Total libraries: " + libraries.size()
+        );
 
         String os = detectOS();
+        String arch = detectArch();
+
+
 
         System.out.println("Detected OS: " + os);
         System.out.println("Libraries found: " + libraries.size());
 
 
-        for (int i = 0; i < libraries.size(); i++) {
 
-            JsonObject library =
-                    libraries.get(i).getAsJsonObject();
+        for (JsonElement element : libraries) {
+
+
+            JsonObject library = element.getAsJsonObject();
+            System.out.println(
+                    "Processing: " + library.get("name").getAsString()
+            );
 
 
             if (!allowed(library, os)) {
 
                 if (library.has("name")) {
+
                     System.out.println(
                             "Skipping blocked library: "
                                     + library.get("name").getAsString()
                     );
                 }
-
+                System.out.println("Skipping: " + library.get("name").getAsString());
                 continue;
             }
 
 
-            if (library.has("downloads")) {
+
+            boolean installed = false;
+            boolean hasNative = false;
+
+
+
+            if (library.has("downloads")
+                    && library.get("downloads").isJsonObject()) {
+
 
                 JsonObject downloads =
                         library.getAsJsonObject("downloads");
 
+                System.out.println(
+                        "DOWNLOADS DATA: " + downloads
+                );
 
-                if (downloads.has("artifact")) {
 
-                    install(
-                            downloads.getAsJsonObject("artifact"),
-                            librariesDir
+
+                // Normal jar
+                if (downloads.has("artifact")
+                        && downloads.get("artifact").isJsonObject()) {
+
+
+                    JsonObject artifact =
+                            downloads.getAsJsonObject("artifact");
+
+
+                    System.out.println(
+                            "Installing artifact: "
+                                    + artifact.get("url").getAsString()
                     );
+
+
+                    install(artifact, librariesDir);
+
+                    installed = true;
+
+
+// Extract native artifact if it is a native jar
+                    String artifactUrl = artifact.get("url").getAsString();
+
+                    if (artifactUrl.contains("natives-" + os)
+                            || artifactUrl.contains("natives-" + os + "-")) {
+
+                        String relativePath;
+
+                        if (artifact.has("path")) {
+                            relativePath = artifact.get("path").getAsString();
+                        } else {
+                            relativePath = artifactUrl.replace(
+                                    "https://libraries.minecraft.net/",
+                                    ""
+                            );
+                        }
+
+
+                        Path nativeJar =
+                                librariesDir.resolve(relativePath);
+
+
+                        try {
+                            NativeExtractor.extract(
+                                    nativeJar,
+                                    nativesDir
+                            );
+
+                        } catch (Exception e) {
+                            System.err.println(
+                                    "Failed extracting native artifact: "
+                                            + nativeJar
+                            );
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
 
-                if (downloads.has("classifiers")) {
+
+                // Native libraries
+                if (downloads.has("classifiers")
+                        && downloads.get("classifiers").isJsonObject()) {
+
 
                     JsonObject classifiers =
                             downloads.getAsJsonObject("classifiers");
 
 
-                    String nativeKey =
-                            "natives-" + os;
+                    for (Map.Entry<String, JsonElement> entry :
+                            classifiers.entrySet()) {
 
 
-                    if (classifiers.has(nativeKey)) {
+                        String key = entry.getKey();
+
 
                         System.out.println(
-                                "Native library detected: "
-                                        + nativeKey
+                                "Classifier: " + key
+                        );
+
+
+                        if (!key.equals("natives-" + os)
+                                && !key.equals("natives-" + os + "-" + arch)) {
+
+                            continue;
+                        }
+                        hasNative = true;
+
+
+                        JsonObject nativeArtifact =
+                                entry.getValue()
+                                        .getAsJsonObject();
+
+
+                        System.out.println(
+                                "Downloading native: " + key
                         );
 
 
                         install(
-                                classifiers.getAsJsonObject(nativeKey),
+                                nativeArtifact,
                                 librariesDir
                         );
+
+
+                        String relativePath;
+
+
+                        if (nativeArtifact.has("path")) {
+
+                            relativePath =
+                                    nativeArtifact
+                                            .get("path")
+                                            .getAsString();
+
+                        } else {
+
+                            relativePath =
+                                    nativeArtifact
+                                            .get("url")
+                                            .getAsString()
+                                            .replace(
+                                                    "https://libraries.minecraft.net/",
+                                                    ""
+                                            );
+                        }
+
+
+                        Path nativeJar =
+                                librariesDir.resolve(relativePath);
+
+
+
+                        if (Files.exists(nativeJar)) {
+
+                            try {
+
+                                NativeExtractor.extract(
+                                        nativeJar,
+                                        nativesDir
+                                );
+
+
+                            } catch (Exception e) {
+
+                                System.err.println(
+                                        "Failed extracting native: "
+                                                + nativeJar
+                                );
+
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                        installed = true;
                     }
                 }
+            }
 
-            } else if (library.has("name")) {
+
+
+            // Maven fallback
+
+            if (!installed && library.has("name")) {
+
+
+                String name =
+                        library.get("name").getAsString();
+
+
 
                 System.out.println(
-                        "Resolving Maven library: "
-                                + library.get("name").getAsString()
+                        "Maven fallback: " + name
                 );
 
 
                 installMaven(
-                        library.get("name").getAsString(),
+                        name,
                         librariesDir
                 );
             }
+
+
+
+
         }
+
 
 
         System.out.println(
@@ -129,52 +297,83 @@ public final class LibraryInstaller {
 
 
 
+
     private static void install(
             JsonObject artifact,
             Path librariesDir
     ) {
 
+
         try {
 
-            if (!artifact.has("path")) {
-                System.out.println(
-                        "Skipping artifact without path"
+
+            if (!artifact.has("url")) {
+
+                System.err.println(
+                        "Artifact has no URL"
                 );
+
                 return;
             }
 
 
-            String pathString =
-                    artifact.get("path")
-                            .getAsString();
-
 
             String url =
-                    artifact.has("url")
-                            ? artifact.get("url")
-                            .getAsString()
-                            : "https://libraries.minecraft.net/"
-                            + pathString;
+                    artifact.get("url").getAsString();
 
 
-            Path path =
-                    librariesDir.resolve(pathString);
+
+            String relativePath;
+
+
+
+            if (artifact.has("path")) {
+
+                relativePath =
+                        artifact.get("path")
+                                .getAsString();
+
+            } else {
+
+                relativePath =
+                        url.replace(
+                                "https://libraries.minecraft.net/",
+                                ""
+                        );
+            }
+
+
+
+            Path destination =
+                    librariesDir.resolve(relativePath);
+
+
+
+            System.out.println(
+                    "Saving to: "
+                            + destination.toAbsolutePath()
+            );
+
 
 
             download(
                     url,
-                    path
+                    destination
             );
+
 
 
         } catch (Exception e) {
 
             System.err.println(
-                    "Library failed: "
-                            + e.getMessage()
+                    "Library failed:"
             );
+
+            e.printStackTrace();
         }
     }
+
+
 
 
 
@@ -183,6 +382,7 @@ public final class LibraryInstaller {
             Path librariesDir
     ) {
 
+
         MavenArtifactResolver.Artifact artifact =
                 MavenArtifactResolver.resolve(
                         name,
@@ -190,15 +390,16 @@ public final class LibraryInstaller {
                 );
 
 
+
         if (artifact == null) {
 
             System.err.println(
-                    "Could not resolve: "
-                            + name
+                    "Could not resolve: " + name
             );
 
             return;
         }
+
 
 
         download(
@@ -209,31 +410,28 @@ public final class LibraryInstaller {
 
 
 
+
+
+
     private static void download(
             String url,
             Path destination
     ) {
 
+
         try {
 
+
             if (Files.exists(destination)) {
-
-                System.out.println(
-                        "Already exists: "
-                                + destination
-                );
-
-                return;
+                Files.delete(destination);
             }
 
 
-            Path parent =
-                    destination.getParent();
 
+            Files.createDirectories(
+                    destination.getParent()
+            );
 
-            if (parent != null) {
-                Files.createDirectories(parent);
-            }
 
 
             System.out.println(
@@ -242,12 +440,21 @@ public final class LibraryInstaller {
             );
 
 
+
             URLConnection connection =
-                    new URL(url).openConnection();
+                    new URL(url)
+                            .openConnection();
 
 
-            connection.setConnectTimeout(10000);
-            connection.setReadTimeout(30000);
+
+            connection.setConnectTimeout(
+                    10000
+            );
+
+            connection.setReadTimeout(
+                    30000
+            );
+
 
 
             try (InputStream in =
@@ -262,21 +469,26 @@ public final class LibraryInstaller {
             }
 
 
+
             System.out.println(
                     "Downloaded: "
                             + destination
             );
 
 
+
         } catch (Exception e) {
 
+
             throw new RuntimeException(
-                    "Failed downloading "
-                            + url,
+                    "Failed downloading " + url,
                     e
             );
         }
     }
+
+
+
 
 
 
@@ -285,61 +497,75 @@ public final class LibraryInstaller {
             String os
     ) {
 
+        String name = library.has("name")
+                ? library.get("name").getAsString()
+                : "";
+
+        String arch = detectArch();
+
+        // Handle native libraries whose architecture is encoded in the NAME.
+        if (name.contains(":natives-")) {
+
+            if (name.contains(":natives-" + os + "-x86")) {
+                return arch.equals("x86");
+            }
+
+            if (name.contains(":natives-" + os + "-arm64")) {
+                return arch.equals("arm64");
+            }
+
+            // Plain "natives-windows" = 64-bit x86
+            if (name.contains(":natives-" + os)
+                    && !name.contains("-x86")
+                    && !name.contains("-arm64")) {
+                return arch.equals("x86_64");
+            }
+        }
+
+        // Normal Mojang rule processing
         if (!library.has("rules")) {
             return true;
         }
 
+        JsonArray rules = library.getAsJsonArray("rules");
+        boolean allowed = true;
 
-        JsonArray rules =
-                library.getAsJsonArray("rules");
+        for (JsonElement element : rules) {
 
+            JsonObject rule = element.getAsJsonObject();
 
-        boolean allowed = false;
-
-
-        for (int i = 0; i < rules.size(); i++) {
-
-            JsonObject rule =
-                    rules.get(i)
-                            .getAsJsonObject();
-
-
-            String action =
-                    rule.has("action")
-                            ? rule.get("action")
-                            .getAsString()
-                            : "allow";
-
+            String action = rule.has("action")
+                    ? rule.get("action").getAsString()
+                    : "allow";
 
             boolean matchesOS = true;
 
-
             if (rule.has("os")) {
 
-                JsonObject osRule =
-                        rule.getAsJsonObject("os");
-
+                JsonObject osRule = rule.getAsJsonObject("os");
 
                 if (osRule.has("name")) {
+                    matchesOS = os.equals(osRule.get("name").getAsString());
+                }
 
-                    matchesOS =
-                            osRule.get("name")
-                                    .getAsString()
-                                    .equals(os);
+                if (matchesOS && osRule.has("arch")) {
+
+                    String requiredArch = osRule.get("arch").getAsString();
+
+                    matchesOS = requiredArch.equals(arch);
                 }
             }
 
-
             if (matchesOS) {
-
-                allowed =
-                        action.equals("allow");
+                allowed = action.equals("allow");
             }
         }
 
-
         return allowed;
     }
+
+
+
 
 
 
@@ -349,17 +575,35 @@ public final class LibraryInstaller {
                 System.getProperty("os.name")
                         .toLowerCase(Locale.ROOT);
 
-
         if (os.contains("win")) {
             return "windows";
         }
-
 
         if (os.contains("mac")) {
             return "osx";
         }
 
-
         return "linux";
+    }
+
+
+    private static String detectArch() {
+
+        String arch = System.getProperty("os.arch")
+                .toLowerCase(Locale.ROOT);
+
+        if (arch.contains("aarch64") || arch.contains("arm64")) {
+            return "arm64";
+        }
+
+        if (arch.equals("x86")
+                || arch.equals("i386")
+                || arch.equals("i486")
+                || arch.equals("i586")
+                || arch.equals("i686")) {
+            return "x86";
+        }
+
+        return "x86_64";
     }
 }

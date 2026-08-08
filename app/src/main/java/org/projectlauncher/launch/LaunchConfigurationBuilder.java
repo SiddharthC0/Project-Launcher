@@ -25,37 +25,48 @@ public final class LaunchConfigurationBuilder {
             Path clientJar
     ) {
 
-        Objects.requireNonNull(versionJson, "versionJson");
-        Objects.requireNonNull(gameDirectory, "gameDirectory");
-        Objects.requireNonNull(librariesDirectory, "librariesDirectory");
-        Objects.requireNonNull(assetsDirectory, "assetsDirectory");
-        Objects.requireNonNull(nativesDirectory, "nativesDirectory");
-        Objects.requireNonNull(clientJar, "clientJar");
+        Objects.requireNonNull(versionJson, "Version JSON cannot be null");
+        Objects.requireNonNull(instance, "Instance cannot be null");
+        Objects.requireNonNull(gameDirectory, "Game directory cannot be null");
+        Objects.requireNonNull(librariesDirectory, "Libraries directory cannot be null");
+        Objects.requireNonNull(assetsDirectory, "Assets directory cannot be null");
+        Objects.requireNonNull(nativesDirectory, "Natives directory cannot be null");
+        Objects.requireNonNull(clientJar, "Client jar cannot be null");
+
 
         String versionId =
-                versionJson.get("id")
-                        .getAsString();
+                requireString(versionJson, "id");
+
 
         String mainClass =
-                versionJson.get("mainClass")
-                        .getAsString();
+                requireString(versionJson, "mainClass");
 
-        String assetIndexId =
-                versionJson
-                        .getAsJsonObject("assetIndex")
-                        .get("id")
-                        .getAsString();
+
+        String assetIndexId = "legacy";
+
+        if (versionJson.has("assetIndex")) {
+
+            JsonObject assetIndex =
+                    versionJson.getAsJsonObject("assetIndex");
+
+            if (assetIndex.has("id")) {
+                assetIndexId =
+                        assetIndex.get("id").getAsString();
+            }
+        }
 
 
         String username =
                 resolveUsername(instance);
 
+
         String uuid =
                 generateOfflineUUID(username);
 
-        String accessToken = "0";
 
+        String accessToken = "0";
         String userType = "legacy";
+
 
         String versionType =
                 versionJson.has("type")
@@ -90,12 +101,28 @@ public final class LaunchConfigurationBuilder {
                         resolver
                 );
 
+        jvmArguments.add(
+                "-Djava.library.path=" +
+                        nativesDirectory.toAbsolutePath()
+        );
+
+        jvmArguments.add(
+                "-Dorg.lwjgl.librarypath=" +
+                        nativesDirectory.toAbsolutePath()
+        );
+
+        jvmArguments.add(
+                "-Dorg.lwjgl.system.SharedLibraryExtractPath=" +
+                        nativesDirectory.toAbsolutePath()
+        );
+
 
         List<String> gameArguments =
                 GameArgumentsBuilder.build(
                         versionJson,
                         resolver
                 );
+
 
 
         return new LaunchConfiguration(
@@ -116,6 +143,21 @@ public final class LaunchConfigurationBuilder {
                 gameArguments,
                 classpath
         );
+    }
+
+
+    private String requireString(
+            JsonObject json,
+            String key
+    ) {
+
+        if (!json.has(key)) {
+            throw new IllegalArgumentException(
+                    "Missing version JSON property: " + key
+            );
+        }
+
+        return json.get(key).getAsString();
     }
 
 

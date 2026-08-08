@@ -8,6 +8,7 @@ public final class ArgumentResolver {
 
     private final Map<String, String> values;
 
+
     public ArgumentResolver(
             String username,
             String uuid,
@@ -22,46 +23,83 @@ public final class ArgumentResolver {
 
         values = new HashMap<>();
 
-        values.put("auth_player_name", username);
-        values.put("auth_uuid", uuid);
-        values.put("auth_access_token", accessToken);
+        put("auth_player_name", username);
+        put("auth_uuid", uuid);
+        put("auth_access_token", accessToken);
 
-        values.put("user_type", userType);
-        values.put("version_name", versionId);
+        put("auth_session", accessToken);
+        put("auth_xuid", "");
 
-        values.put(
+        put("user_type", userType);
+        put("version_name", versionId);
+
+        put(
                 "game_directory",
-                gameDirectory.toAbsolutePath().toString()
+                gameDirectory
         );
 
-        values.put(
+        put(
                 "assets_root",
-                assetsDirectory.toAbsolutePath().toString()
+                assetsDirectory
         );
 
-        values.put(
+        put(
                 "assets_index_name",
                 assetIndexId
         );
 
-        values.put(
+        put(
                 "natives_directory",
-                nativesDirectory.toAbsolutePath().toString()
+                nativesDirectory
         );
     }
 
 
-    public String resolve(String argument) {
+
+    private void put(
+            String key,
+            String value
+    ) {
+
+        values.put(
+                key,
+                value == null ? "" : value
+        );
+    }
+
+
+    private void put(
+            String key,
+            Path path
+    ) {
+
+        values.put(
+                key,
+                path == null
+                        ? ""
+                        : path.toAbsolutePath().toString()
+        );
+    }
+
+
+
+    public String resolve(
+            String argument
+    ) {
 
         String result = argument;
 
-        for (Map.Entry<String, String> entry : values.entrySet()) {
+
+        for (Map.Entry<String, String> entry :
+                values.entrySet()) {
+
 
             result = result.replace(
                     "${" + entry.getKey() + "}",
                     entry.getValue()
             );
         }
+
 
         return result;
     }

@@ -16,33 +16,105 @@ public final class MavenArtifactResolver {
             Path librariesDirectory
     ) {
 
-        String[] parts = name.split(":");
+        System.out.println("MAVEN RESOLVE: " + name);
 
-        if (parts.length < 3) {
+
+        if (name == null || name.isBlank()) {
             return null;
         }
 
-        String group = parts[0];
-        String artifact = parts[1];
-        String version = parts[2];
+
+        String[] parts =
+                name.split(":");
+
+
+        if (parts.length < 3) {
+
+            System.out.println(
+                    "Invalid Maven coordinate: " + name
+            );
+
+            return null;
+        }
+
+
+
+        String group =
+                parts[0];
+
+
+        String artifact =
+                parts[1];
+
+
+        String version =
+                parts[2];
+
+
 
         String groupPath =
                 group.replace(".", "/");
 
+
+
+        /*
+         * Minecraft libraries use:
+         *
+         * group/artifact/version/artifact-version.jar
+         *
+         * Example:
+         *
+         * net.sf.jopt-simple
+         * ->
+         * net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+         */
         String fileName =
-                artifact + "-" + version + ".jar";
+                artifact
+                        + "-"
+                        + version
+                        + ".jar";
+
+
 
         String relativePath =
-                groupPath + "/"
-                + artifact + "/"
-                + version + "/"
-                + fileName;
+                groupPath
+                        + "/"
+                        + artifact
+                        + "/"
+                        + version
+                        + "/"
+                        + fileName;
+
+
+
+        Path destination =
+                librariesDirectory.resolve(relativePath);
+
+
+
+        String url =
+                MAVEN_URL
+                        + relativePath;
+
+
+
+        System.out.println(
+                "Resolved URL: " + url
+        );
+
+
+        System.out.println(
+                "Resolved Path: " + destination
+        );
+
+
 
         return new Artifact(
-                MAVEN_URL + relativePath,
-                librariesDirectory.resolve(relativePath)
+                url,
+                destination
         );
     }
+
 
 
     public record Artifact(

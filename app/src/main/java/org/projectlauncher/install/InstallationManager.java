@@ -13,6 +13,7 @@ public final class InstallationManager {
     private InstallationManager() {
     }
 
+
     public static void install(
             JsonObject versionJson,
             String versionId,
@@ -21,25 +22,47 @@ public final class InstallationManager {
             Path nativesDirectory
     ) throws Exception {
 
-        installLibraries(versionJson, downloadsDirectory);
 
-        installClient(versionJson, versionId, downloadsDirectory);
+        installLibraries(
+                versionJson,
+                downloadsDirectory,
+                nativesDirectory
+        );
 
-        installAssets(versionJson, assetsDirectory);
 
-        installNatives(downloadsDirectory, nativesDirectory);
+        installClient(
+                versionJson,
+                versionId,
+                downloadsDirectory
+        );
+
+
+        installAssets(
+                versionJson,
+                assetsDirectory
+        );
     }
+
+
+
 
     private static void installLibraries(
             JsonObject versionJson,
-            Path downloadsDirectory
+            Path downloadsDirectory,
+            Path nativesDirectory
     ) {
+
 
         LibraryInstaller.downloadLibraries(
                 versionJson,
-                downloadsDirectory.resolve("libraries")
+                downloadsDirectory.resolve("libraries"),
+                nativesDirectory
         );
     }
+
+
+
+
 
     private static void installClient(
             JsonObject versionJson,
@@ -47,43 +70,78 @@ public final class InstallationManager {
             Path downloadsDirectory
     ) throws Exception {
 
-        JsonObject client = versionJson
-                .getAsJsonObject("downloads")
-                .getAsJsonObject("client");
 
-        Path clientJar = downloadsDirectory.resolve(versionId + ".jar");
+        JsonObject client =
+                versionJson
+                        .getAsJsonObject("downloads")
+                        .getAsJsonObject("client");
 
-        if (Files.exists(clientJar))
+
+
+        Path clientJar =
+                downloadsDirectory.resolve(
+                        versionId + ".jar"
+                );
+
+
+
+        if (Files.exists(clientJar)) {
             return;
+        }
+
+
 
         ClientDownloader.downloadClient(
-        versionId,
-        client.get("url").getAsString(),
-        client.get("sha1").getAsString(),
-        downloadsDirectory
-);
+                versionId,
+                client.get("url").getAsString(),
+                client.get("sha1").getAsString(),
+                downloadsDirectory
+        );
     }
+
+
+
+
 
     private static void installAssets(
             JsonObject versionJson,
             Path assetsDirectory
     ) throws Exception {
 
+
         JsonObject assetIndex =
                 versionJson.getAsJsonObject("assetIndex");
 
-        String id = assetIndex.get("id").getAsString();
 
-        Path index = assetsDirectory
-                .resolve("indexes")
-                .resolve(id + ".json");
 
-        Files.createDirectories(index.getParent());
+        String id =
+                assetIndex.get("id").getAsString();
+
+
+
+        Path index =
+                assetsDirectory
+                        .resolve("indexes")
+                        .resolve(id + ".json");
+
+
+
+        Files.createDirectories(
+                index.getParent()
+        );
+
+
 
         if (!Files.exists(index)) {
 
+
             try (InputStream in =
-                         new URL(assetIndex.get("url").getAsString()).openStream()) {
+                         new URL(
+                                 assetIndex
+                                         .get("url")
+                                         .getAsString()
+                         ).openStream()) {
+
 
                 Files.copy(
                         in,
@@ -93,27 +151,11 @@ public final class InstallationManager {
             }
         }
 
+
+
         VersionInstaller.downloadAssets(
                 index,
                 assetsDirectory.resolve("objects")
         );
-    }
-
-    private static void installNatives(
-            Path downloadsDirectory,
-            Path nativesDirectory
-    ) throws Exception {
-
-        Path marker = nativesDirectory.resolve(".extracted");
-
-        if (Files.exists(marker))
-            return;
-
-        NativeExtractor.extractNatives(
-                downloadsDirectory.resolve("libraries"),
-                nativesDirectory
-        );
-
-        Files.createFile(marker);
     }
 }

@@ -26,6 +26,9 @@ public class Main {
     public static void main(String[] args) {
 
         LoadingFrame loader = new LoadingFrame();
+        System.out.println(
+                "ARCH: " + System.getProperty("os.arch")
+        );
 
         loader.launchLoader();
 

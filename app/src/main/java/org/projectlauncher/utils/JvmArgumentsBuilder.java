@@ -12,6 +12,7 @@ public final class JvmArgumentsBuilder {
     private JvmArgumentsBuilder() {
     }
 
+
     public static List<String> build(
             JsonObject versionJson,
             ArgumentResolver resolver
@@ -19,10 +20,13 @@ public final class JvmArgumentsBuilder {
 
         List<String> arguments = new ArrayList<>();
 
+
+        // Minecraft version JSON JVM arguments
         if (versionJson.has("arguments")) {
 
             JsonObject argumentObject =
                     versionJson.getAsJsonObject("arguments");
+
 
             if (argumentObject.has("jvm")) {
 
@@ -34,8 +38,21 @@ public final class JvmArgumentsBuilder {
             }
         }
 
+
+        /*
+         * Default memory argument.
+         * Only added if Minecraft JSON does not provide one.
+         */
+        addIfMissing(
+                arguments,
+                "-Xmx2G"
+        );
+
+
         return arguments;
     }
+
+
 
     private static void addArguments(
             JsonArray array,
@@ -45,33 +62,56 @@ public final class JvmArgumentsBuilder {
 
         boolean skipNext = false;
 
+
         for (JsonElement element : array) {
+
 
             if (skipNext) {
                 skipNext = false;
                 continue;
             }
 
+
             if (!element.isJsonPrimitive()) {
                 continue;
             }
 
-            String arg = resolver.resolve(
-                    element.getAsString()
-            );
 
-            // Skip Mojang's classpath placeholder.
-            // MinecraftLauncher adds the real classpath itself.
-            if (arg.equals("-cp") || arg.equals("-classpath")) {
+            String arg =
+                    resolver.resolve(
+                            element.getAsString()
+                    );
+
+
+            /*
+             * MinecraftLauncher handles classpath itself.
+             */
+            if (arg.equals("-cp")
+                    || arg.equals("-classpath")) {
+
                 skipNext = true;
                 continue;
             }
+
 
             if (arg.equals("${classpath}")) {
                 continue;
             }
 
+
             output.add(arg);
+        }
+    }
+
+
+
+    private static void addIfMissing(
+            List<String> list,
+            String value
+    ) {
+
+        if (!list.contains(value)) {
+            list.add(value);
         }
     }
 }

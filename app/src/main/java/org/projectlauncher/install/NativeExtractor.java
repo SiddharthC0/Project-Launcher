@@ -7,76 +7,337 @@ import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class NativeExtractor {
+public final class NativeExtractor {
+
+
+    private NativeExtractor() {
+    }
+
+
 
     /**
-     * Extract all OS-specific natives from LWJGL/OpenAL jars.
-     * Skips META-INF and non-native files to avoid spam errors.
+     * Extract native binaries from Minecraft native jars.
      */
-    public static void extractNatives(Path librariesDir, Path nativesDir) throws IOException {
-        if (!Files.exists(nativesDir)) Files.createDirectories(nativesDir);
+    public static void extractNatives(
+            Path librariesDir,
+            Path nativesDir
+    ) throws IOException {
 
-        String osName = detectOS();
+
+        Files.createDirectories(nativesDir);
+
+
+        System.out.println(
+                "Extracting natives..."
+        );
+
 
         Files.walk(librariesDir)
                 .filter(Files::isRegularFile)
-                .filter(p -> p.toString().endsWith(".jar"))
-                .forEach(jarPath -> {
-                    try (ZipFile zip = new ZipFile(jarPath.toFile())) {
-                        Enumeration<? extends ZipEntry> entries = zip.entries();
+                .filter(path ->
+                        path.toString().endsWith(".jar"))
+                .forEach(jar -> {
 
-                        while (entries.hasMoreElements()) {
-                            ZipEntry entry = entries.nextElement();
-                            String name = entry.getName();
+                    extractJar(
+                            jar,
+                            nativesDir
+                    );
 
-                            // Skip META-INF and directories
-                            if (entry.isDirectory() || name.startsWith("META-INF/")) continue;
-
-                            // Only extract OS-specific natives or general classes
-                            boolean isNative = name.toLowerCase().contains(osName.toLowerCase());
-                            boolean isClass = name.endsWith(".class") || name.endsWith(".dll") || name.endsWith(".so") || name.endsWith(".dylib");
-
-                            if (isNative || isClass) {
-                                // Handle $ in class names and safe paths
-                                String relativePath = name.replace("/", File.separator);
-
-                                Path outPath = nativesDir.resolve(relativePath);
-                                if (!Files.exists(outPath.getParent())) Files.createDirectories(outPath.getParent());
-
-                                try (InputStream in = zip.getInputStream(entry);
-                                     FileOutputStream out = new FileOutputStream(outPath.toFile())) {
-                                    byte[] buffer = new byte[8192];
-                                    int read;
-                                    while ((read = in.read(buffer)) != -1) out.write(buffer, 0, read);
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.err.println("Warning: Failed to extract from " + jarPath + " - " + e.getMessage());
-                    }
                 });
 
-        System.out.println("Natives extracted to: " + nativesDir);
+
+
+        System.out.println(
+                "Natives extracted to: "
+                        + nativesDir
+        );
     }
 
-    /**
-     * Detect the OS for native extraction.
-     */
+
+
+
+    private static void extractJar(
+            Path jarPath,
+            Path nativesDir
+    ) {
+
+
+        try (ZipFile zip =
+                     new ZipFile(jarPath.toFile())) {
+
+
+
+            Enumeration<? extends ZipEntry> entries =
+                    zip.entries();
+
+
+
+            while (entries.hasMoreElements()) {
+
+
+                ZipEntry entry =
+                        entries.nextElement();
+
+
+
+                if (entry.isDirectory()) {
+                    continue;
+                }
+
+
+
+                String name =
+                        entry.getName();
+
+
+
+                // Ignore signatures
+                if (name.startsWith("META-INF")) {
+                    continue;
+                }
+
+
+
+                if (!isNativeFile(name)) {
+                    continue;
+                }
+
+
+
+                Path output =
+                        nativesDir.resolve(
+                                Paths.get(name)
+                                        .getFileName()
+                        );
+
+
+
+                Files.createDirectories(
+                        output.getParent()
+                );
+
+
+
+                try (InputStream in =
+                             zip.getInputStream(entry);
+
+                     OutputStream out =
+                             Files.newOutputStream(
+                                     output,
+                                     StandardOpenOption.CREATE,
+                                     StandardOpenOption.TRUNCATE_EXISTING
+                             )) {
+
+
+
+                    byte[] buffer =
+                            new byte[8192];
+
+
+                    int length;
+
+
+                    while ((length = in.read(buffer)) != -1) {
+
+                        out.write(
+                                buffer,
+                                0,
+                                length
+                        );
+                    }
+                }
+
+
+
+                System.out.println(
+                        "Extracted native: "
+                                + output.getFileName()
+                );
+            }
+
+
+        } catch (Exception e) {
+
+
+            System.err.println(
+                    "Failed extracting "
+                            + jarPath
+            );
+
+
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+    private static boolean isNativeFile(
+            String name
+    ) {
+
+
+        String lower =
+                name.toLowerCase(Locale.ROOT);
+
+
+
+        return lower.endsWith(".dll")
+                || lower.endsWith(".so")
+                || lower.endsWith(".dylib");
+    }
+
+
+
+
+
+
     public static String detectOS() {
-        String os = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
-        if (os.contains("win")) return "windows";
-        if (os.contains("mac")) return "macos";
-        if (os.contains("nix") || os.contains("nux") || os.contains("aix")) return "linux";
+
+
+        String os =
+                System.getProperty("os.name")
+                        .toLowerCase(Locale.ROOT);
+
+
+
+        if (os.contains("win")) {
+
+            return "windows";
+        }
+
+
+        if (os.contains("mac")) {
+
+            return "macos";
+        }
+
+
+        if (os.contains("linux")
+                || os.contains("unix")) {
+
+            return "linux";
+        }
+
+
+
         return "unknown";
     }
 
+
+
+
+
     public static void main(String[] args) {
+
+
         try {
-            Path libs = Paths.get("launcher-data/downloads/libraries");
-            Path natives = Paths.get("launcher-data/natives");
-            extractNatives(libs, natives);
+
+
+            Path libs =
+                    Paths.get(
+                            "launcher-data/downloads/libraries"
+                    );
+
+
+            Path natives =
+                    Paths.get(
+                            "launcher-data/natives"
+                    );
+
+
+
+            extractNatives(
+                    libs,
+                    natives
+            );
+
+
+
         } catch (Exception e) {
+
             e.printStackTrace();
+        }
+    }
+
+    public static void extract(
+            Path nativeJar,
+            Path nativesDir
+    ) throws IOException {
+
+        System.out.println("================================");
+        System.out.println("Extracting: " + nativeJar.getFileName());
+        System.out.println("================================");
+
+
+        Files.createDirectories(nativesDir);
+
+
+        try (ZipFile zip = new ZipFile(nativeJar.toFile())) {
+
+
+            Enumeration<? extends ZipEntry> entries =
+                    zip.entries();
+
+
+            while (entries.hasMoreElements()) {
+
+
+                ZipEntry entry =
+                        entries.nextElement();
+
+                System.out.println(" -> " + entry.getName());
+                if (entry.isDirectory()) {
+                    continue;
+                }
+
+
+                String name =
+                        entry.getName();
+
+
+                if (!isNativeFile(name)) {
+                    continue;
+                }
+
+
+                Path output =
+                        nativesDir.resolve(
+                                Paths.get(name).getFileName()
+                        );
+
+
+                try (InputStream in =
+                             zip.getInputStream(entry);
+
+                     OutputStream out =
+                             Files.newOutputStream(
+                                     output,
+                                     StandardOpenOption.CREATE,
+                                     StandardOpenOption.TRUNCATE_EXISTING
+                             )) {
+
+
+                    byte[] buffer =
+                            new byte[8192];
+
+                    int read;
+
+
+                    while ((read = in.read(buffer)) != -1) {
+
+                        out.write(buffer, 0, read);
+                    }
+                }
+
+
+                System.out.println(
+                        "Extracted native: "
+                                + output.getFileName()
+                );
+            }
         }
     }
 }
